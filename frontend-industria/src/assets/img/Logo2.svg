@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_1" data-name="Capa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #671313;
+      }
+
+      .cls-2 {
+        fill: #9b1c1c;
+      }
+
+      .cls-3 {
+        letter-spacing: -.08em;
+      }
+
+      .cls-4 {
+        fill: #fff;
+        font-family: TeroxiaDemoPersonalUse, 'Teroxia Demo';
+        font-size: 400px;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-2" points="1092.87 189.87 1348.48 189.87 1092.87 513.86 1360 827.13 1092.87 827.13 828 524.91 1092.87 189.87"/>
+  <polygon class="cls-1" points="779 533.31 518.01 533.31 779 827 1040 827 779 533.31"/>
+  <text class="cls-4" transform="translate(297.88 638.91)"><tspan class="cls-3" x="0" y="0">A</tspan><tspan x="253.2" y="0">TLAS</tspan></text>
+</svg>
