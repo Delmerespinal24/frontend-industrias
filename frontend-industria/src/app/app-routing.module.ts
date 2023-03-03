@@ -4,13 +4,15 @@ import { RegistroAdminComponent } from './admin/componentAdmin/registro-admin/re
 import { HomeComponent } from './home/home/home.component';
 
 
+
 const routes: Routes = [
   { path:'', component:HomeComponent},
   { path:'registro-admin', component:RegistroAdminComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  declarations:[],
+  imports: [RouterModule.forRoot(routes),],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
