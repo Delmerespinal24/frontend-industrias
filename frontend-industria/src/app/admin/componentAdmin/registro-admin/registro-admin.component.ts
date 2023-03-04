@@ -15,7 +15,7 @@ export class RegistroAdminComponent {
   registroAdmin!: Administrador;
 
   maxN=20;
-
+  maxNP=10;
 
 
   
@@ -25,40 +25,57 @@ export class RegistroAdminComponent {
   }
 
   name= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
+  name2= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
+  username= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
+  birthdate= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+  phone =  new FormControl('',[Validators.required, Validators.maxLength(this.maxNP)]);
+  gender = new FormControl('');
   password= new FormControl('', [Validators.required, Validators.pattern(
     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/
   )]);
-  confirmpassword= new FormControl('', [Validators.required, Validators.pattern(
-    /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/
-  )]);
-  email = new FormControl('', [Validators.required, Validators.email]);
+
   
   ngOnInit(): void {
     this.form = this.fb.group({
       nombre: [''],
+      apelido:[''],
+      usuario:[''],
+      fecha:[''],
       correo: [''],
+      telefono:[0],
+      sexo:[''],
       password:[''],
-      confirmpassword:[''],
     })
     console.log('entrada', this.form.value)
   }
 
   registro() {
     // handle form submission
+    
+    let phone1:number = parseInt(this.phone.value as string);
 
     this.form = this.fb.group({
       nombre: [this.name.value],
+      apelido:[this.name2.value],
+      usuario:[this.username.value],
+      birthdate:[this.birthdate],
       correo: [this.email.value],
+      telefono:[this.phone.value],
+      sexo:[this.gender.value],
       password:[this.password.value],
-      confirmpassword:[this.confirmpassword.value],
     })
     
 
     this.registroAdmin=({
       name:this.name.value!,
+      name2:this.name2.value!,
+      username:this.username.value!,
+      birthdate: this.birthdate.value!,
       email:this.email.value!,
+      phone:phone1,
+      gender:this.gender.value!,
       password: this.password.value!,
-      confirmpasword: this.confirmpassword.value!
 
     })
     console.log('form2: ', this.registroAdmin)
