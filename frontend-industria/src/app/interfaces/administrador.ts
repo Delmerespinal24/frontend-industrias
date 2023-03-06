@@ -1,10 +1,11 @@
 export interface Administrador {
-    name : string  ;
-    name2: string; 
-    username: string;
-    birthdate: string;
-    email : string  ; 
-    phone: number;
-    gender: string;
+    primerNombre : string  ;
+    primerApellido: string; 
+    nombreUsuario: string;
+    FechaNacimiento: string;
+    correoElectronico : string  ; 
+    telefono: number;
+    sexo: string;
     password : string ; 
+    esAdmin: number;
 }

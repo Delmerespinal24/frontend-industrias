@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Administrador } from 'src/app/interfaces/administrador';
 import { AdministradorService } from 'src/app/service/administrador.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,12 +18,12 @@ export class RegistroAdminComponent {
   maxN=20;
   maxNP=10;
 
-
   
 
-  constructor(private fb: FormBuilder, private registroadmin:AdministradorService) {
+  constructor(private fb: FormBuilder, private registroadmin:AdministradorService,private router:Router,) {
 
   }
+  
 
   name= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
   name2= new FormControl('', [Validators.required, Validators.maxLength(this.maxN)]);
@@ -34,6 +35,7 @@ export class RegistroAdminComponent {
   password= new FormControl('', [Validators.required, Validators.pattern(
     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/
   )]);
+  admin= new FormControl('1');
 
   
   ngOnInit(): void {
@@ -46,43 +48,43 @@ export class RegistroAdminComponent {
       telefono:[0],
       sexo:[''],
       password:[''],
+      admin:[1]
     })
     console.log('entrada', this.form.value)
   }
 
+ 
+
   registro() {
-    // handle form submission
-    
-    let phone1:number = parseInt(this.phone.value as string);
+    if (this.form.valid) {
+      // handle form submission
+      let phone1:number = parseInt(this.phone.value as string);
+      let admin1: number = parseInt(this.admin.value as string)
 
-    this.form = this.fb.group({
-      nombre: [this.name.value],
-      apelido:[this.name2.value],
-      usuario:[this.username.value],
-      birthdate:[this.birthdate],
-      correo: [this.email.value],
-      telefono:[this.phone.value],
-      sexo:[this.gender.value],
-      password:[this.password.value],
-    })
-    
+      this.registroAdmin=({
+        primerNombre:this.name.value!,
+        primerApellido:this.name2.value!,
+        nombreUsuario:this.username.value!,
+        FechaNacimiento: this.birthdate.value!,
+        correoElectronico :this.email.value!,
+        telefono:phone1,
+        sexo:this.gender.value!,
+        password: this.password.value!,
+        esAdmin:admin1,
+      })
+  
+      console.log("new: ",this.registroAdmin)
+      this.registroadmin.newAdmin(this.registroAdmin).subscribe(res=>{
+        console.log('Respuesta:',res)
+      })
 
-    this.registroAdmin=({
-      name:this.name.value!,
-      name2:this.name2.value!,
-      username:this.username.value!,
-      birthdate: this.birthdate.value!,
-      email:this.email.value!,
-      phone:phone1,
-      gender:this.gender.value!,
-      password: this.password.value!,
-
-    })
-    console.log('form2: ', this.registroAdmin)
-
-    // this.registroadmin.newAdmin(this.registroAdmin).subscribe(res=>{
-    //   console.log('Respuesta:',res)
-    // })
-    console.log("new: ",this.registroAdmin)
+      alert("Usuario creado con exito");
+      this.router.navigate(['']);
+      
+    } else {
+      // display an error message to the user
+      alert('Please fill all required fields');
+    }
   }
+  
 }

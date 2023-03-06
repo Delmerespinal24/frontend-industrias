@@ -7,11 +7,11 @@ import { Administrador } from '../interfaces/administrador';
   providedIn: 'root'
 })
 export class AdministradorService {
-  private apiUrl = ''
+  private apiUrl = 'http://localhost:4000/signupAdmin'
 
-  // constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  // newAdmin(cliente: Administrador):Observable<Administrador>{
-  //   return this.http.post<Administrador>(this.apiUrl, cliente);
-  // }
+  newAdmin(cliente: Administrador):Observable<Administrador>{
+    return this.http.post<Administrador>(this.apiUrl, cliente);
+  }
 }

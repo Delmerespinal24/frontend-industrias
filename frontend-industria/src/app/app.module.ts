@@ -10,6 +10,7 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { Seccion1Component } from './component/seccion1/seccion1.component';
 import { Seccion2Component } from './component/seccion2/seccion2.component';
 import { HomeComponent } from './home/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeComponent } from './home/home/home.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
