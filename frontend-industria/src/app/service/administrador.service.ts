@@ -8,7 +8,8 @@ import { Administrador } from '../interfaces/administrador';
 })
 export class AdministradorService {
   // private apiUrl = 'http://localhost:4000/signupAdmin'
-  private apiUrl = 'http://ec2-44-214-12-139.compute-1.amazonaws.com:4000/signupAdmin'
+  // private apiUrl = 'http://ec2-44-214-12-139.compute-1.amazonaws.com:4000/signupAdmin'
+  private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/signupAdmin'
 
   constructor(private http: HttpClient) { }
 
