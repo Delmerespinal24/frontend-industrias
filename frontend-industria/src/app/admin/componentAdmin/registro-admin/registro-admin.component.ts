@@ -116,41 +116,42 @@ export class RegistroAdminComponent {
 
   */
 
-  
-
-  
+  showErrors = false;
 
   registro() {
 
-    let newAdministrador: Administrador={
-      primerNombre: "" + this.fisrtnameControl.value,
-      primerApellido: "" + this.lastnameControl.value,
-      nombreUsuario: "" + this.usernameControl.value,
-      FechaNacimiento: "" + this.birthdateControl.value,
-      correoElectronico : "" + this.emailControl.value,
-      telefono:parseInt( "" + this.phoneControl.value ),
-      sexo: "" + this.genderControl.value,
-      password: "" + this.passwordControl.value,
-      esAdmin:1
-    }
+    this.showErrors = true;
 
-    console.log(newAdministrador);
-    /*
     if (this.registrationForm.valid) {
       // handle form submission
-  
-      console.log("new: ",this.newAdministrador)
-      this.registroAdmin.newAdmin(this.newAdministrador).subscribe(res=>{
+
+      let newAdministrador: Administrador={
+        primerNombre: "" + this.fisrtnameControl.value,
+        primerApellido: "" + this.lastnameControl.value,
+        nombreUsuario: "" + this.usernameControl.value,
+        FechaNacimiento: "" + this.birthdateControl.value,
+        correoElectronico : "" + this.emailControl.value,
+        telefono:parseInt( "" + this.phoneControl.value ),
+        sexo: "" + this.genderControl.value,
+        password: "" + this.passwordControl.value,
+        esAdmin:1
+      }
+
+      console.log("new: ",newAdministrador)
+      this.registroAdmin.newAdmin(newAdministrador).subscribe(res=>{
         console.log('Respuesta:',res)
       })
 
       alert("Usuario creado con exito");
       this.router.navigate(['']);
-      
+
+      console.log(newAdministrador);
+
     } else {
       // display an error message to the user
-      alert('Please fill all required fields');
-    }*/
+      alert('Por favor llene todos los campos requeridos');
+    }
+   
   }
   
 }

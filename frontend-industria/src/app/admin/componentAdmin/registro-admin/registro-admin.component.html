@@ -20,70 +20,70 @@
                     <form [formGroup]="registrationForm" (ngSubmit)="registro()">
                         <div class="columns-2">
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2">Primer Nombre</label>
+                                <label for="name" >Primer Nombre</label>
                                 <input type="text" id="nombre" formControlName="nombre" class="form-input w-full p-2">
-                                <div class="errors-container" *ngIf="fisrtnameControl.invalid && (fisrtnameControl.touched || fisrtnameControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="fisrtnameControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="fisrtnameControl.hasError('minlength')">Nombre muy corto</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2">Primer Apellido</label>
+                                <label for="name" >Primer Apellido</label>
                                 <input type="text" id="apellido" formControlName="apellido" class="form-input w-full p-2">
-                                <div class="errors-container" *ngIf="lastnameControl.invalid && (lastnameControl.touched || lastnameControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="lastnameControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="lastnameControl.hasError('minlength')">Apellido muy corto</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2">Usuario</label>
+                                <label for="name" >Usuario</label>
                                 <input type="text" id="usuario" formControlName="usuario" class="form-input w-full p-2">
-                                <div class="errors-container" *ngIf="usernameControl.invalid && (usernameControl.touched || usernameControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="usernameControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="usernameControl.hasError('minlength')">Nombre de usuario muy corto</p>
                                     <p class="errors-msg" *ngIf="usernameControl.hasError('pattern') && !usernameControl.hasError('minlength')">Debe de comenzar con una letra y contener solo letras y números</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2">Fecha de nacimiento</label>
-                                <input type="text" id="fecha" formControlName="nacimiento" class="form-input w-full p-2" placeholder="aaaa-mm-dd" maxlength=10>
+                                <label for="name" >Fecha de nacimiento</label>
+                                <input type="date" id="fecha" max="2023-01-01" formControlName="nacimiento" class="form-input w-full p-2" placeholder="aaaa-mm-dd" maxlength=10>
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="birthdateControl.hasError('required')">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="birthdateControl.hasError('pattern')">La fecha no es valida</p>
+                                </div> 
                             </div>
-                            <div class="errors-container" *ngIf="birthdateControl.invalid && (birthdateControl.touched || birthdateControl.dirty)">
-                                <p class="errors-msg" *ngIf="birthdateControl.hasError('required')">El campo es obligatorio</p>
-                                <p class="errors-msg" *ngIf="birthdateControl.hasError('pattern')">Fecha invalida</p>
-                            </div> 
 
                             <div class="mb-4">
-                                <label for="email" class="block text-blanco p-2 font-medium mb-2">Email</label>
+                                <label for="email" >Email</label>
                                 <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2">
-                                <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="emailControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="emailControl.hasError('email')">El email no es valido</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2" >Telefono</label>
+                                <label for="name"  >Telefono</label>
                                 <input type="text" id="telefono" formControlName="telefono" class="form-input w-full p-2" type="tel" maxlength=8>
-                                <div class="errors-container" *ngIf="phoneControl.invalid && (phoneControl.touched || phoneControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="phoneControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="phoneControl.hasError('pattern')">Ingresa 8 números</p>
                                 </div> 
                             </div>
                             <div class="mb-4">
-                                <label for="name" class="block text-blanco p-2 font-medium mb-2">Sexo</label>
+                                <label for="name" >Sexo</label>
                                 <!--input type="text" id="sexo" [formControl]="gender" class="form-input w-full p-2"-->
                                 <select name="select" class="form-input w-full p-2" id="sexo" formControlName="sexo">
                                     <option value="Masculino">Masculino</option>
                                     <option value="Femenino">Femenino</option>
                                 </select>
-                                <div class="errors-container" *ngIf="genderControl.invalid && (genderControl.touched || genderControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="genderControl.hasError('required')">Selecciona tu sexo</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="password" class="block text-blanco p-2 font-medium mb-2">Contraseña</label>
+                                <label for="password" >Contraseña</label>
                                 <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2">
-                                <div class="errors-container" *ngIf="passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)">
+                                <div class="errors-container" *ngIf="showErrors">
                                     <p class="errors-msg" *ngIf="passwordControl.hasError('required')">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="passwordControl.hasError('pattern')"> Debe tener minimo 8 caracteres, Use minusculas, mayusculas, numeros y simbolos[@$!%*#?&^_-]</p>
                                 </div>
@@ -91,7 +91,7 @@
                             
                         </div>
                         <div class="flex flex-row justify-center">
-                            <button type="submit" class="bg-azulPrimario text-white py-2 px-4 rounded hover:bg-azulSecundario m-auto" [disabled]="registrationForm.invalid">Registrate</button>
+                            <button type="submit" class="bg-azulPrimario text-white py-2 px-4 rounded hover:bg-azulSecundario m-auto">Registrate</button>
                         </div>
                     </form>
                 </div>

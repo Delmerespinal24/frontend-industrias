@@ -4,4 +4,23 @@
     color: rgb(255, 165, 165);
     position: absolute;
     width: 45%;
+    margin-top: -1rem;
+}
+
+label {
+    display: block;
+    color: whitesmoke;
+    padding: 0.35rem;
+    font-weight: 500;
+
+}
+
+input {
+    margin-bottom: 1rem;
+
+}
+
+select {
+    margin-bottom: 1rem;
+
 }
