@@ -139,11 +139,21 @@ export class RegistroAdminComponent {
 
       console.log("new: ",newAdministrador)
       this.registroAdmin.newAdmin(newAdministrador).subscribe(res=>{
-        console.log('Respuesta:',res)
+
+        let info:BookInfo = <any>res
+
+        console.log('message:',info.message)
+        console.log('status:',info.status)
+
+        if(info.status == 200){
+
+          alert("Usuario creado con exito");
+          this.router.navigate(['']);
+        }
+
       })
 
-      alert("Usuario creado con exito");
-      this.router.navigate(['']);
+      
 
       console.log(newAdministrador);
 
@@ -154,4 +164,9 @@ export class RegistroAdminComponent {
    
   }
   
+}
+
+interface BookInfo {
+  status : number;
+  message: string
 }
