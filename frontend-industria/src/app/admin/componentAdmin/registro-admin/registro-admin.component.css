@@ -1,0 +1,7 @@
+.errors-container {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(255, 165, 165);
+    position: absolute;
+    width: 45%;
+}
