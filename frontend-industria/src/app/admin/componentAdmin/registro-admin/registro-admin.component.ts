@@ -117,10 +117,16 @@ export class RegistroAdminComponent {
   */
 
   showErrors = false;
+  usernameExists = false;
+  emailExists = false;
+  phoneExists = false;
 
   registro() {
 
     this.showErrors = true;
+    this.usernameExists = false;
+    this.emailExists = false;
+    this.phoneExists = false;
 
     if (this.registrationForm.valid) {
       // handle form submission
@@ -149,13 +155,21 @@ export class RegistroAdminComponent {
 
           alert("Usuario creado con exito");
           this.router.navigate(['']);
+        }else if(info.status == 400){ // Ya existe el nombre de usuario
+          this.usernameExists = true;
+         
+        }else if(info.status == 401){ // El correo electronico ya está en uso
+          this.emailExists = true;
+
+        }else if(info.status == 402){ // El número de teléfono ya está en uso
+          this.phoneExists = true;
+
+        }else{
+          alert("Ha ocurrido un problema.");
         }
 
       })
 
-      
-
-      console.log(newAdministrador);
 
     } else {
       // display an error message to the user

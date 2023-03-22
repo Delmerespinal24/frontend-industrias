@@ -39,9 +39,11 @@
                                 <label for="name" >Usuario</label>
                                 <input type="text" id="usuario" formControlName="usuario" class="form-input w-full p-2">
                                 <div class="errors-container" *ngIf="showErrors">
-                                    <p class="errors-msg" *ngIf="usernameControl.hasError('required')">El campo es obligatorio</p>
-                                    <p class="errors-msg" *ngIf="usernameControl.hasError('minlength')">Nombre de usuario muy corto</p>
-                                    <p class="errors-msg" *ngIf="usernameControl.hasError('pattern') && !usernameControl.hasError('minlength')">Debe de comenzar con una letra y contener solo letras y números</p>
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('required') && !usernameExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('minlength') && !usernameExists">Nombre de usuario muy corto</p>
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('pattern') && !usernameControl.hasError('minlength') && !usernameExists">
+                                        Debe de comenzar con una letra y contener solo letras y números</p>
+                                    <p class="errors-msg" *ngIf="usernameExists">El nombre de usuario ya está en uso</p>
                                 </div>
                             </div>
                             <div class="mb-4">
@@ -57,16 +59,18 @@
                                 <label for="email" >Email</label>
                                 <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2">
                                 <div class="errors-container" *ngIf="showErrors">
-                                    <p class="errors-msg" *ngIf="emailControl.hasError('required')">El campo es obligatorio</p>
-                                    <p class="errors-msg" *ngIf="emailControl.hasError('email')">El email no es valido</p>
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('required') && !emailExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('email') && !emailExists">El email no es valido</p>
+                                    <p class="errors-msg" *ngIf="emailExists">El correo electronico ya está en uso</p>
                                 </div>
                             </div>
                             <div class="mb-4">
                                 <label for="name"  >Telefono</label>
                                 <input type="text" id="telefono" formControlName="telefono" class="form-input w-full p-2" type="tel" maxlength=8>
                                 <div class="errors-container" *ngIf="showErrors">
-                                    <p class="errors-msg" *ngIf="phoneControl.hasError('required')">El campo es obligatorio</p>
-                                    <p class="errors-msg" *ngIf="phoneControl.hasError('pattern')">Ingresa 8 números</p>
+                                    <p class="errors-msg" *ngIf="phoneControl.hasError('required') && !phoneExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="phoneControl.hasError('pattern') && !phoneExists">Ingresa 8 números</p>
+                                    <p class="errors-msg" *ngIf="phoneExists">El número de teléfono ya está en uso</p>
                                 </div> 
                             </div>
                             <div class="mb-4">
