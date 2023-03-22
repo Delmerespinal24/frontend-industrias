@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+
+        <div class="bg-gradient-to-b from-oscuro to-azulSecundario md:h-auto h-screen ">
+            <div>
+                <img class="w-3/6 h-3/6 m-auto hover:cursor-pointer" src="../../../../assets/img/Logo2.svg" alt="logo" >
+            </div>
+            <div class="container mx-auto px-4  md:p-8">
+                <div class="max-w-md mx-auto border md:p-4 drop-shadow-2xl p-4">
+                    <div class="flex justify-center">
+                        <h1 class="text-3xl font-bold mb-4 text-blanco">LOGIN</h1>
+                    </div>
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
+                        <div class="columns-2">
+
+                            <div class="mb-4">
+                                <label for="email" >Email</label>
+                                <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('required') && !emailExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('email') && !emailExists">El email no es valido</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" >Contraseña</label>
+                                <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)">
+                                    <p class="errors-msg" *ngIf="passwordControl.hasError('required')">El campo es obligatorio</p>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                        <div class="flex flex-row justify-center">
+                            <button type="submit" class="bg-azulPrimario text-white py-2 px-4 rounded hover:bg-azulSecundario m-auto">Iniciar sesión</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+        </div>
+
+</body>
+</html>
+
