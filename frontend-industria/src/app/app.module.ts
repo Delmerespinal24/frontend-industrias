@@ -11,7 +11,7 @@ import { Seccion1Component } from './component/seccion1/seccion1.component';
 import { Seccion2Component } from './component/seccion2/seccion2.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +20,6 @@ import { LoginComponent } from './login/login.component';
     Seccion1Component,
     Seccion2Component,
     HomeComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,

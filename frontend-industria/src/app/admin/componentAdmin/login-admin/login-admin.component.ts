@@ -5,13 +5,12 @@ import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-login-admin',
+  templateUrl: './login-admin.component.html',
+  styleUrls: ['./login-admin.component.css']
 })
-export class LoginComponent {
-
-
+export class LoginAdminComponent {
+  
   maxN=50;
 
   constructor(
@@ -89,7 +88,7 @@ export class LoginComponent {
     }
    
   }
-  
+
 }
 
 interface BookInfo {
