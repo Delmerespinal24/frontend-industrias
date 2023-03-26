@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Login } from 'src/app/interfaces/login';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login-admin',
@@ -46,39 +47,33 @@ export class LoginAdminComponent {
  
       
       let loginUser: Login={
-        correoElectronico : "" + this.emailControl.value,
+        nombreUsuario : "" + this.emailControl.value,
         password: "" + this.passwordControl.value,
       }
 
       
       console.log("new: ",loginUser)
-      this.loginService.newLogin(loginUser).subscribe(res=>{
-
-        let info:BookInfo = <any>res
-
-        console.log('message:',info.message)
-        console.log('status:',info.status)
-
-        if(info.status == 200){
-
-          alert("Login Correcto");
-          //this.router.navigate(['']);
+      this.loginService.newLogin(loginUser).subscribe(
+        res => {
+          let info: BookInfo = <any>res;
+          console.log('message:', info.message);
+          console.log('status:', info.status);
+      
+          if (info.status == 200) {
+            alert("Login Correcto");
+            //this.router.navigate(['']);
+          } else if (info.status == 400) { // Ya existe el nombre de usuario
+            alert(info.message);
+          }
+        },
+        error => {
+          if (error instanceof HttpErrorResponse) {
+            alert(error.error.message);
+          } else {
+            alert('Ha ocurrido un error.');
+          }
         }
-        /*
-        else if(info.status == 400){ // Ya existe el nombre de usuario
-          this.usernameExists = true;
-         
-        }else if(info.status == 401){ // El correo electronico ya está en uso
-          this.emailExists = true;
-
-        }else if(info.status == 402){ // El número de teléfono ya está en uso
-          this.phoneExists = true;
-
-        }else{
-          alert("Ha ocurrido un problema.");
-        }*/
-
-      })
+      );
       
       
 

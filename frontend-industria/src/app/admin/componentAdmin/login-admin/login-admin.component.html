@@ -23,8 +23,8 @@
                         <div class="columns-2">
 
                             <div class="mb-4">
-                                <label for="email" >Email</label>
-                                <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2">
+                                <label class="m-2" for="email" >Nombre de Usuario</label>
+                                <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2 m-2">
                                 <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
                                     <p class="errors-msg" *ngIf="emailControl.hasError('required') && !emailExists">El campo es obligatorio</p>
                                     <p class="errors-msg" *ngIf="emailControl.hasError('email') && !emailExists">El email no es valido</p>
@@ -32,7 +32,7 @@
                             </div>
                             <div class="mb-4">
                                 <label for="password" >Contraseña</label>
-                                <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2">
+                                <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2  m-2">
                                 <div class="errors-container" *ngIf="passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)">
                                     <p class="errors-msg" *ngIf="passwordControl.hasError('required')">El campo es obligatorio</p>
                                     </div>
