@@ -61,6 +61,7 @@ export class LoginAdminComponent {
       
           if (info.status == 200) {
             alert("Login Correcto");
+            this.router.navigate(['perfil-admin']);
             //this.router.navigate(['']);
           } else if (info.status == 400) { // Ya existe el nombre de usuario
             alert(info.message);

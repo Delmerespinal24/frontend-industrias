@@ -7,15 +7,14 @@
     <title>LoginAdmin</title>
 </head>
 <body>
-
         <div class="bg-gradient-to-b from-oscuro to-azulSecundario md:h-auto h-screen ">
             <div>
-                <a href="/">
+                <a class="w-28" href="/">
                     <img class="w-3/6 h-3/6 m-auto hover:cursor-pointer"  src="../../../../assets/img/Logo2.svg" alt="logo" >
                 </a>
             </div>
-            <div class="container mx-auto px-4  md:p-8">
-                <div class="max-w-md mx-auto border md:p-4 drop-shadow-2xl p-4">
+            <div class="container mx-auto px-4  md:p-8 flex h-96 items-center md:h-auto md:mt-0">
+                <div class="max-w-md mx-auto border md:p-4 drop-shadow-2xl p-4 ">
                     <div class="flex justify-center">
                         <h1 class="text-3xl font-bold mb-4 text-blanco">LOGIN</h1>
                     </div>
@@ -23,7 +22,7 @@
                         <div class="columns-2">
 
                             <div class="mb-4">
-                                <label class="m-2" for="email" >Nombre de Usuario</label>
+                                <label class="m-2 md:text-base text-sm text-white" for="email" >Nombre de Usuario</label>
                                 <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2 m-2">
                                 <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
                                     <p class="errors-msg" *ngIf="emailControl.hasError('required') && !emailExists">El campo es obligatorio</p>
@@ -31,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <label for="password" >Contraseña</label>
+                                <label class="m-2 md:text-base text-sm text-white" for="password" >Contraseña</label>
                                 <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2  m-2">
                                 <div class="errors-container" *ngIf="passwordControl.invalid && (passwordControl.touched || passwordControl.dirty)">
                                     <p class="errors-msg" *ngIf="passwordControl.hasError('required')">El campo es obligatorio</p>

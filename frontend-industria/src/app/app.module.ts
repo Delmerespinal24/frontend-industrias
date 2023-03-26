@@ -11,12 +11,14 @@ import { Seccion1Component } from './component/seccion1/seccion1.component';
 import { Seccion2Component } from './component/seccion2/seccion2.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
     Seccion1Component,
     Seccion2Component,
     HomeComponent,
@@ -27,8 +29,11 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     AdminModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
+    FontAwesomeModule,
   ],
+  exports:[NavbarComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

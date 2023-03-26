@@ -4,6 +4,9 @@ import { RegistroAdminComponent } from './componentAdmin/registro-admin/registro
 import { PerfilAdminComponent } from './componentAdmin/perfil-admin/perfil-admin.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginAdminComponent } from './componentAdmin/login-admin/login-admin.component'; 
+import { SharedModule } from '../shared.module';
+import { RouterModule } from '@angular/router';
+import { PlanesComponent } from './componentAdmin/planes/planes.component';
 
 
 
@@ -13,11 +16,14 @@ import { LoginAdminComponent } from './componentAdmin/login-admin/login-admin.co
     RegistroAdminComponent,
     PerfilAdminComponent,
     LoginAdminComponent,
+    PlanesComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule,
+    RouterModule
   ],
   exports:[
     RegistroAdminComponent
