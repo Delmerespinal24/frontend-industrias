@@ -60,10 +60,13 @@ export class LoginAdminComponent {
           console.log('status:', info.status);
       
           if (info.status == 200) {
+            localStorage.setItem('token', info.token)
             alert("Login Correcto");
+            //alert(localStorage.getItem('token'));
+            
             this.router.navigate(['perfil-admin']);
             //this.router.navigate(['']);
-          } else if (info.status == 400) { // Ya existe el nombre de usuario
+          } else if (info.status == 400) { // No existe el nombre de usuario
             alert(info.message);
           }
         },
@@ -88,6 +91,7 @@ export class LoginAdminComponent {
 }
 
 interface BookInfo {
-  status : number;
-  message: string
+  status : number,
+  message: string,
+  token: string
 }
