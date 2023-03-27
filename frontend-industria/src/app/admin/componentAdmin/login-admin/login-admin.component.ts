@@ -63,6 +63,7 @@ export class LoginAdminComponent {
             localStorage.setItem('token', info.token)
             alert("Login Correcto");
             //alert(localStorage.getItem('token'));
+            console.log('info token ', info.token)
             
             this.router.navigate(['perfil-admin']);
             //this.router.navigate(['']);
