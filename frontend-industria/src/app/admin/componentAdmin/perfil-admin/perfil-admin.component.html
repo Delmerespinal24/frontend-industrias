@@ -91,39 +91,39 @@
                     </div>
                     <div class="text-gray-700">
                         <div class="grid md:grid-cols-1 text-xl my-3">
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm " *ngIf="infoToken">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm " *ngIf="infoToken">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Primer Nombre</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].primerNombre}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].primerNombre}}</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Primer Apellido</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].primerApellido}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].primerApellido}}</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Genero</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].sexo}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].sexo}}</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Nombre de Usuario</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].nombreUsuario}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].nombreUsuario}}</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Telefono</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].telefono}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].telefono}}</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Admin</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">Si</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">Si</div>
                             </div>
-                            <div class="grid grid-cols-2  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Correo</div>
                                 <div class="px-4 py-2">
-                                    <a class="text-blue-800 text-azulPrimario md:text-sm" href="mailto:jane@example.com">{{infoToken.data[0].correoElectronico}}</a>
+                                    <a class="text-blue-800 text-azulPrimario md:text-base text-base" href="mailto:jane@example.com">{{infoToken.data[0].correoElectronico}}</a>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
+                            <div class="grid md:grid-cols-2 grid-cols-1 bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Cumpleaños</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-sm">{{infoToken.data[0].fechaNacimiento}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken.data[0].fechaNacimiento}}</div>
                             </div>
                         </div>
                     </div>

@@ -1,17 +1,41 @@
 <nav class="bg-oscuro">
     <div class="flex flex-row justify-between">
-        <div class="bg-oscuro">
-
+      <div class="bg-oscuro">
+  
+      </div>
+      <div class="flex justify-around">
+        <div>
+          <a class="w-28" href="/">
+            <img src="../../../assets/img/Logo2.svg" alt="Logo" class="w-24 h-20 object-cover">
+          </a>
         </div>
-        <div class="flex justify-around">
+      </div>
+      <div class="flex justify-end items-center mr-10 text-sm">
+        <div *ngIf="infoToken">
+          <div class="relative inline-block text-left">
             <div>
-                <a class="w-28" href="/">
-                    <img src="../../../assets/img/Logo2.svg" alt="Logo" class="w-24 h-20 object-cover">
-                </a>
+              <button class="inline-flex justify-center items-center w-full px-4 py-2 text-sm font-medium text-white bg-gray-700 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-900" id="options-menu" aria-expanded="true" aria-haspopup="true" (click)="toggleDropdown()">
+                <span class="mr-1">Bienvenido, {{infoToken.primerNombre}}</span>
+                <svg class="w-5 h-5 ml-1 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M10 12a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                  <path fill-rule="evenodd" d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-7a7 7 0 00-6.062 10.497L2.414 12.12A1 1 0 003 13h14a1 1 0 00.707-1.707l-1.524-1.524A7 7 0 0010 3z" clip-rule="evenodd" />
+                </svg>
+              </button>
             </div>
+  
+            <div *ngIf="dropdownVisible" class="absolute right-0 w-56 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <div class="py-1" role="none">
+                <a href="perfil-admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem">Mi perfil</a>
+                <a href="/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" role="menuitem" (click)="logout()" >Cerrar sesión</a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="flex justify-end items-center mr-10 text-sm">
-            <button class="text-white" [routerLink]="['/login-admin']">Iniciar Sesión</button>
+  
+        <div *ngIf="!infoToken">
+          <button class="text-white" [routerLink]="['/login-admin']">Iniciar Sesión</button>
         </div>
+      </div>
     </div>
   </nav>
+  

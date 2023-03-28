@@ -24,11 +24,12 @@ module.exports = {
       blanco: '#FFFFFF',
       hueso: '#F2F3D9',
       grisClaro: '#E3E3E3',
-      oscuro: '#001D29'
+      oscuro: '#001D29',
+      nuevo:'#84D35F'
     },
     extend: {
       backgroundImage: {
-        'mujer': "url('/assets/img/mujer.png')",
+        'mujer': "url('/assets/img/mujer1.png')",
         'logo': "url('/assets/img/Logo2.svg')",
       },
     },

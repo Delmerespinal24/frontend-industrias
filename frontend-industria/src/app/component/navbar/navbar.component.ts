@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Token } from 'src/app/interfaces/token';
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -8,14 +9,38 @@ import { TokenService } from 'src/app/service/token.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
+  token!:Token;
+  infoToken:any;
+  dropdownVisible = false;
+  isLoggedIn = false;
 
-  constructor(private TokenService:TokenService, private router:Router){}
+  constructor( private tokenService: TokenService, private router: Router,) {
+    this.token = { token: this.tokenService.getToken() };
+
+    if (this.token.token) {
+      this.isLoggedIn = true;
+
+      this.tokenService.decodedToken(this.token).subscribe({
+        next: res => {
+          this.infoToken = res.data[0];
+          console.log('info token', this.infoToken);
+        },
+        error: error => {
+          console.log(error);
+        }
+      });
+    }
+
+
+  }
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
 
   logout(){
-    // if (this.authservice.isLoggedIn()===true) {
-    //   this.TokenService.RemoveToken();
-    // } else {
-    //   console.log(false);
-    // }
+    this.tokenService.RemoveToken();
   }
 }
+
+
