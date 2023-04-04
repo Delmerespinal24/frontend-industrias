@@ -31,7 +31,7 @@ export class PerfilAdminComponent {
 
   }
 
-ngOnit():void{
+ngOnInit():void{
 
 
 }

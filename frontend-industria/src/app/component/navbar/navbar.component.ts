@@ -22,7 +22,7 @@ export class NavbarComponent {
 
       this.tokenService.decodedToken(this.token).subscribe({
         next: res => {
-          this.infoToken = res.data[0];
+          this.infoToken = res.data;
           console.log('info token', this.infoToken);
         },
         error: error => {

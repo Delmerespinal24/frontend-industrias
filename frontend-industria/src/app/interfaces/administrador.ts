@@ -8,4 +8,5 @@ export interface Administrador {
     sexo: string;
     password : string ; 
     esAdmin: number;
+    fotoPerfil:string;
 }

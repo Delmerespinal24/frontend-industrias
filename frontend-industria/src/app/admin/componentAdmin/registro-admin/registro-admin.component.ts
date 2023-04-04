@@ -140,7 +140,8 @@ export class RegistroAdminComponent {
         telefono:parseInt( "" + this.phoneControl.value ),
         sexo: "" + this.genderControl.value,
         password: "" + this.passwordControl.value,
-        esAdmin:1
+        esAdmin:1,
+        fotoPerfil:'',
       }
 
       console.log("new: ",newAdministrador)
@@ -154,7 +155,7 @@ export class RegistroAdminComponent {
         if(info.status == 200){
 
           alert("Usuario creado con exito");
-          this.router.navigate(['']);
+          this.router.navigate(['planes']);
         }else if(info.status == 400){ // Ya existe el nombre de usuario
           this.usernameExists = true;
          
