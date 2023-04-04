@@ -30,26 +30,7 @@ export class PlanesComponent {
 
   constructor(private TokenService:TokenService,private solicitudPago:PagoService, private router:Router){
 
-    this.token={"token":this.TokenService.getToken()}
 
-      this.TokenService.decodedToken(this.token).subscribe({
-        next: res=>{
-          this.infoToken=res;
-          console.log("info token ",this.infoToken)
-        },
-        error: error=>{
-          console.log(error);
-        }
-      });
-
-    let inicioMes = new Date();
-    let finMes = new Date(inicioMes.getFullYear(), inicioMes.getMonth(), inicioMes.getDate());;
-    // let cambioInicioMes= inicioMes.toLocaleDateString('es-ES');
-    finMes.setMonth(finMes.getMonth() + 1);
-
-    this.finPlan=finMes.toISOString().slice(0, 10);;
-    
-    console.log(inicioMes, finMes)
   }
 
   toggleTabs($tabNumber: number){
@@ -89,12 +70,36 @@ export class PlanesComponent {
     }else{
       
     }
+    
 
     this.toggleTabs(2)
     console.log('plan seleccionado: ',this.planSeleccionado, 'Nombre de plan: ', this.nombrePlan, 'precio plan: ', this.precioPlan)
+
+    this.token={"token":this.TokenService.getToken()}
+
+    this.TokenService.decodedToken(this.token).subscribe({
+      next: res=>{
+        this.infoToken=res;
+        console.log("info token ",this.infoToken)
+      },
+      error: error=>{
+        console.log(error);
+      }
+    });
+
+  let inicioMes = new Date();
+  let finMes = new Date(inicioMes.getFullYear(), inicioMes.getMonth(), inicioMes.getDate());;
+  // let cambioInicioMes= inicioMes.toLocaleDateString('es-ES');
+  finMes.setMonth(finMes.getMonth() + 1);
+
+  this.finPlan=finMes.toISOString().slice(0, 10);;
+  
+  console.log(inicioMes, finMes)
+  console.log('info id: ',this.infoToken?.data?.user?.idUsuario)
   }
 
   pago(){
+
 
   let tarjetaUsuario: TarjetaUsuario = {
     numeroTarjeta: parseInt('' + this.pagoForm.get('numeroTarjeta')?.value),
@@ -115,7 +120,7 @@ export class PlanesComponent {
       tipoPlan:this.nombrePlan,
       fechaFin:this.finPlan,
       precio:this.precioPlan ,
-      idUsuario: this.infoToken.data[0].idUsuario,
+      idUsuario: this.infoToken?.data?.user?.idUsuario,
     })
 
 
@@ -136,7 +141,7 @@ export class PlanesComponent {
       if(info.status == 200){
 
         alert("TARJETA BUENA");
-        this.router.navigate(['']);
+        this.router.navigate(['perfil-admin']);
       }else if(info.status == 400){ 
  
         alert("Ha ocurrido un problema.");

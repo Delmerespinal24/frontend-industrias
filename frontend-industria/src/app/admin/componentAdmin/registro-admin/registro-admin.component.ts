@@ -3,6 +3,9 @@ import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Administrador } from 'src/app/interfaces/administrador';
 import { AdministradorService } from 'src/app/service/administrador.service';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/service/login.service';
+import { Login } from 'src/app/interfaces/login';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -21,7 +24,7 @@ export class RegistroAdminComponent {
 
   constructor(
     /*private fb: FormBuilder,*/
-    private registroAdmin:AdministradorService, private router:Router) {
+    private registroAdmin:AdministradorService, private router:Router,private loginService:LoginService) {
 
   }
 
@@ -154,6 +157,38 @@ export class RegistroAdminComponent {
 
         if(info.status == 200){
 
+          let loginUser: Login={
+            nombreUsuario : "" + this.emailControl.value,
+            password: "" + this.passwordControl.value,
+          }
+    
+          
+          console.log("new: ",loginUser)
+          this.loginService.newLogin(loginUser).subscribe(
+            res => {
+              let info: BookInfo = <any>res;
+              console.log('message:', info.message);
+              console.log('status:', info.status);
+          
+              if (info.status == 200) {
+                localStorage.setItem('token', info.token)
+                alert("Login Correcto");
+                //alert(localStorage.getItem('token'));
+                console.log('info token ', info.token)
+                //this.router.navigate(['']);
+              } else if (info.status == 400) { // No existe el nombre de usuario
+                alert(info.message);
+              }
+            },
+            error => {
+              if (error instanceof HttpErrorResponse) {
+                alert(error.error.message);
+              } else {
+                alert('Ha ocurrido un error.');
+              }
+            }
+          );
+
           alert("Usuario creado con exito");
           this.router.navigate(['planes']);
         }else if(info.status == 400){ // Ya existe el nombre de usuario
@@ -180,8 +215,8 @@ export class RegistroAdminComponent {
   }
   
 }
-
 interface BookInfo {
-  status : number;
-  message: string
+  status : number,
+  message: string,
+  token: string
 }
