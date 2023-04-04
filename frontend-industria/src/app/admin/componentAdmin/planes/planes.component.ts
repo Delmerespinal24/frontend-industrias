@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { InfoPagoAdmin } from 'src/app/interfaces/info-pago-admin';
 import { TarjetaUsuario } from 'src/app/interfaces/tarjeta-usuario';
 import { Token } from 'src/app/interfaces/token';
 import { TokenService } from 'src/app/service/token.service';
@@ -17,6 +18,8 @@ export class PlanesComponent {
   precioPlan=0;
   infotarjetaUsuario!:TarjetaUsuario;
   finPlan!:Date;
+  infoPago!:InfoPagoAdmin;
+  idUsuario='';
 
   
   token!:Token;
@@ -92,20 +95,36 @@ export class PlanesComponent {
 
   pago(){
 
-    let tarjetaUsuario:TarjetaUsuario={
-      numeroTarjeta:parseInt(""+this.numeroTarjetaControl.value),
-      codigoCVV:parseInt(""+this.codigoCVVControl.value),
-      fechaVencimiento:""+this.fechaVencimientoControl.value,
-    }
+  let tarjetaUsuario: TarjetaUsuario = {
+    numeroTarjeta: parseInt('' + this.pagoForm.get('numeroTarjeta')?.value),
+    codigoCVV: parseInt('' + this.pagoForm.get('codigoCVV')?.value),
+    fechaVencimiento: '' + this.pagoForm.get('fechaVencimiento')?.value,
+  };
 
-    this.infotarjetaUsuario=({
-      numeroTarjeta:parseInt(""+this.numeroTarjetaControl.value),
-      codigoCVV:parseInt(""+this.codigoCVVControl.value),
-      fechaVencimiento:""+this.fechaVencimientoControl.value,
-    });
+  this.infotarjetaUsuario = {
+    numeroTarjeta: parseInt('' + this.pagoForm.get('numeroTarjeta')?.value),
+    codigoCVV: parseInt('' + this.pagoForm.get('codigoCVV')?.value),
+    fechaVencimiento: '' + this.pagoForm.get('fechaVencimiento')?.value,
+  };
+
+    this.infoPago=({
+      noTarjeta:this.numeroTarjetaControl.value,
+      fechaVencimientoT:this.fechaVencimientoControl.value,
+      codigoCVV:this.codigoCVVControl.value,
+      tipoPlan:this.nombrePlan,
+      fechaFin:this.finPlan,
+      precio:this.precioPlan ,
+      idUsuario: this.infoToken.data[0].nombreUsuario,
+    })
+
 
     console.log('info: ',tarjetaUsuario)
 
     this.toggleTabs(3)
   }
+
+  confirmacionPago(){
+    console.log('al backend: ',this.infoPago)
+  }
+
 }
