@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { InfoPagoAdmin } from 'src/app/interfaces/info-pago-admin';
 import { TarjetaUsuario } from 'src/app/interfaces/tarjeta-usuario';
 import { Token } from 'src/app/interfaces/token';
+import { PagoService } from 'src/app/service/pago.service';
 import { TokenService } from 'src/app/service/token.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class PlanesComponent {
   nombrePlan='';
   precioPlan=0;
   infotarjetaUsuario!:TarjetaUsuario;
-  finPlan!:Date;
+  finPlan='';
   infoPago!:InfoPagoAdmin;
   idUsuario='';
 
@@ -27,7 +28,7 @@ export class PlanesComponent {
 
 
 
-  constructor(private TokenService:TokenService, private router:Router){
+  constructor(private TokenService:TokenService,private solicitudPago:PagoService, private router:Router){
 
     this.token={"token":this.TokenService.getToken()}
 
@@ -42,11 +43,11 @@ export class PlanesComponent {
       });
 
     let inicioMes = new Date();
-    let finMes = new Date(inicioMes);
+    let finMes = new Date(inicioMes.getFullYear(), inicioMes.getMonth(), inicioMes.getDate());;
     // let cambioInicioMes= inicioMes.toLocaleDateString('es-ES');
     finMes.setMonth(finMes.getMonth() + 1);
 
-    this.finPlan=finMes;
+    this.finPlan=finMes.toISOString().slice(0, 10);;
     
     console.log(inicioMes, finMes)
   }
@@ -114,7 +115,7 @@ export class PlanesComponent {
       tipoPlan:this.nombrePlan,
       fechaFin:this.finPlan,
       precio:this.precioPlan ,
-      idUsuario: this.infoToken.data[0].nombreUsuario,
+      idUsuario: this.infoToken.data[0].idUsuario,
     })
 
 
@@ -124,7 +125,32 @@ export class PlanesComponent {
   }
 
   confirmacionPago(){
+
+    this.solicitudPago.pagoTarjeta(this.infoPago).subscribe(res=>{
+
+      let info:BookInfo = <any>res
+
+      console.log('message:',info.message)
+      console.log('status:',info.status)
+
+      if(info.status == 200){
+
+        alert("TARJETA BUENA");
+        this.router.navigate(['']);
+      }else if(info.status == 400){ 
+ 
+        alert("Ha ocurrido un problema.");
+      }
+
+    })
+
     console.log('al backend: ',this.infoPago)
   }
 
+}
+
+interface BookInfo {
+  status : number,
+  message: string,
+  token: string
 }

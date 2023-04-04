@@ -3,7 +3,7 @@ export interface InfoPagoAdmin {
     fechaVencimientoT:string;
     codigoCVV:number;
     tipoPlan:string;
-    fechaFin:Date;
+    fechaFin:string;
     precio: number;
     idUsuario: number;
 }
