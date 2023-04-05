@@ -1,30 +1,28 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Login } from 'src/app/interfaces/login';
 import { LoginService } from 'src/app/service/login.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Login } from 'src/app/interfaces/login';
 
 @Component({
-  selector: 'app-login-admin',
-  templateUrl: './login-admin.component.html',
-  styleUrls: ['./login-admin.component.css']
+  selector: 'app-login-cliente',
+  templateUrl: './login-cliente.component.html',
+  styleUrls: ['./login-cliente.component.css']
 })
-export class LoginAdminComponent {
-
+export class LoginClienteComponent {
   constructor(
     
     private loginService:LoginService, private router:Router) {
 
   }
 
-  
   loginForm=new FormGroup({
-      correo: new FormControl('', [Validators.required]),
-      clave: new FormControl('', [Validators.required]),
-      admin: new FormControl('1')
+    correo: new FormControl('', [Validators.required]),
+    clave: new FormControl('', [Validators.required]),
+    admin: new FormControl('1')
   });
-  
+
   get emailControl():FormControl{
     return this.loginForm.get('correo') as FormControl
   }

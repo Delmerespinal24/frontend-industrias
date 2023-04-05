@@ -7,8 +7,9 @@ import { LoginAdminComponent } from './componentAdmin/login-admin/login-admin.co
 import { SharedModule } from '../shared.module';
 import { RouterModule } from '@angular/router';
 import { PlanesComponent } from './componentAdmin/planes/planes.component';
-
-
+import { LoginClienteComponent } from './cliente/login-cliente/login-cliente.component';
+import { RegistroClienteComponent } from './cliente/registro-cliente/registro-cliente.component';
+import { LandingFestivalComponent } from './cliente/landing-festival/landing-festival.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,9 @@ import { PlanesComponent } from './componentAdmin/planes/planes.component';
     PerfilAdminComponent,
     LoginAdminComponent,
     PlanesComponent,
+    LoginClienteComponent,
+    RegistroClienteComponent,
+    LandingFestivalComponent
   ],
   imports: [
     CommonModule,

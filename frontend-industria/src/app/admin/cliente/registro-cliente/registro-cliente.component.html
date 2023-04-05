@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+
+        <div class="bg-gradient-to-b from-oscuro to-azulSecundario md:h-auto h-screen ">
+            <div>
+                <a href="/">
+                    <img class="w-3/6 h-3/6 m-auto hover:cursor-pointer"  src="../../../../assets/img/Logo2.svg" alt="logo" >
+                </a>
+            </div>
+            <div class="container mx-auto px-4  md:p-8">
+                <div class="max-w-md mx-auto border md:p-4 drop-shadow-2xl p-4">
+                    <div class="flex justify-center">
+                        <h1 class="text-3xl font-bold mb-4 text-blanco">Registrate</h1>
+                    </div>
+                    <form [formGroup]="registrationForm" (ngSubmit)="registro()">
+                        <div class="columns-2">
+                            <div class="mb-4">
+                                <label for="name" >Primer Nombre</label>
+                                <input type="text" id="nombre" formControlName="nombre" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="fisrtnameControl.hasError('required')">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="fisrtnameControl.hasError('minlength')">Nombre muy corto</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" >Primer Apellido</label>
+                                <input type="text" id="apellido" formControlName="apellido" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="lastnameControl.hasError('required')">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="lastnameControl.hasError('minlength')">Apellido muy corto</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" >Usuario</label>
+                                <input type="text" id="usuario" formControlName="usuario" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('required') && !usernameExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('minlength') && !usernameExists">Nombre de usuario muy corto</p>
+                                    <p class="errors-msg" *ngIf="usernameControl.hasError('pattern') && !usernameControl.hasError('minlength') && !usernameExists">
+                                        Debe de comenzar con una letra y contener solo letras y números</p>
+                                    <p class="errors-msg" *ngIf="usernameExists">El nombre de usuario ya está en uso</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" >Fecha de nacimiento</label>
+                                <input type="date" id="fecha" max="2023-01-01" formControlName="nacimiento" class="form-input w-full p-2" placeholder="aaaa-mm-dd" maxlength=10>
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="birthdateControl.hasError('required')">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="birthdateControl.hasError('pattern')">La fecha no es valida</p>
+                                </div> 
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="email" >Email</label>
+                                <input type="email" id="correo" formControlName="correo" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('required') && !emailExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="emailControl.hasError('email') && !emailExists">El email no es valido</p>
+                                    <p class="errors-msg" *ngIf="emailExists">El correo electronico ya está en uso</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name"  >Telefono</label>
+                                <input type="text" id="telefono" formControlName="telefono" class="form-input w-full p-2" type="tel" maxlength=8>
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="phoneControl.hasError('required') && !phoneExists">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="phoneControl.hasError('pattern') && !phoneExists">Ingresa 8 números</p>
+                                    <p class="errors-msg" *ngIf="phoneExists">El número de teléfono ya está en uso</p>
+                                </div> 
+                            </div>
+                            <div class="mb-4">
+                                <label for="name" >Sexo</label>
+                                <!--input type="text" id="sexo" [formControl]="gender" class="form-input w-full p-2"-->
+                                <select name="select" class="form-input w-full p-2" id="sexo" formControlName="sexo">
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="genderControl.hasError('required')">Selecciona tu sexo</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="password" >Contraseña</label>
+                                <input type="password" id="contra" formControlName="clave" class="form-input w-full p-2">
+                                <div class="errors-container" *ngIf="showErrors">
+                                    <p class="errors-msg" *ngIf="passwordControl.hasError('required')">El campo es obligatorio</p>
+                                    <p class="errors-msg" *ngIf="passwordControl.hasError('pattern')"> Debe tener minimo 8 caracteres, Use minusculas, mayusculas, numeros y simbolos[@$!%*#?&^_-]</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="flex flex-row justify-center">
+                            <button type="submit" class="bg-azulPrimario text-white py-2 px-4 rounded hover:bg-azulSecundario m-auto">Registrate</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+    
+        </div>
+
+</body>
+</html>
