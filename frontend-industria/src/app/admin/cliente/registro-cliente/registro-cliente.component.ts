@@ -33,8 +33,7 @@ export class RegistroClienteComponent {
       sexo: new FormControl('',[Validators.required]),
       clave: new FormControl('', [Validators.required,
         /*Validators.pattern(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&^_-]).{8,}/)*/
-      ]),
-      admin: new FormControl('1')
+      ])
   });
   
   get fisrtnameControl():FormControl{
@@ -70,7 +69,6 @@ export class RegistroClienteComponent {
   phone = "";
   gender = "";
   password = "";
-  admin = 0;
 
   showErrors = false;
   usernameExists = false;
@@ -96,7 +94,7 @@ export class RegistroClienteComponent {
         telefono:parseInt( "" + this.phoneControl.value ),
         sexo: "" + this.genderControl.value,
         password: "" + this.passwordControl.value,
-        esAdmin:1,
+        esAdmin:0,
         fotoPerfil:'',
       }
 
@@ -124,7 +122,7 @@ export class RegistroClienteComponent {
               console.log('status:', info.status);
           
               if (info.status == 200) {
-                localStorage.setItem('token', info.token)
+                localStorage.setItem('token-festival', info.token)
                 alert("Login Correcto");
                 //alert(localStorage.getItem('token'));
                 console.log('info token ', info.token)
@@ -143,7 +141,7 @@ export class RegistroClienteComponent {
           );
 
           alert("Usuario creado con exito");
-          this.router.navigate(['planes']);
+          this.router.navigate(['landingpage']);
         }else if(info.status == 400){ // Ya existe el nombre de usuario
           this.usernameExists = true;
          

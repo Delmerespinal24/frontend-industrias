@@ -56,12 +56,12 @@ export class LoginClienteComponent {
           console.log('status:', info.status);
       
           if (info.status == 200) {
-            localStorage.setItem('token', info.token)
+            localStorage.setItem('token-festival', info.token)
             alert("Login Correcto");
-            //alert(localStorage.getItem('token'));
+            //alert(localStorage.getItem('token-festival'));
             console.log('info token ', info.token)
             
-            this.router.navigate(['perfil-admin']);
+            this.router.navigate(['landingpage']);
             //this.router.navigate(['']);
           } else if (info.status == 400) { // No existe el nombre de usuario
             alert(info.message);

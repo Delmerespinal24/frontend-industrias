@@ -24,3 +24,15 @@ select {
     margin-bottom: 1rem;
 
 }
+
+.background_registro{
+    background-image:linear-gradient(-225deg, #1A538F 0%, #6fb2ff 100%);
+    height: 100vh;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+img{
+    width: 50vh;
+    height: auto;
+}
