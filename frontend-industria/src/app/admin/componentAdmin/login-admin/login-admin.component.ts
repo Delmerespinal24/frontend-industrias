@@ -58,13 +58,19 @@ export class LoginAdminComponent {
           console.log('status:', info.status);
       
           if (info.status == 200) {
-            localStorage.setItem('token', info.token)
-            alert("Login Correcto");
-            //alert(localStorage.getItem('token'));
-            console.log('info token ', info.token)
-            
-            this.router.navigate(['perfil-admin']);
-            //this.router.navigate(['']);
+            if(info.esAdmin){
+              localStorage.setItem('token', info.token)
+              alert("Login Correcto");
+              //alert(localStorage.getItem('token'));
+              console.log('info token ', info.token)
+              
+              this.router.navigate(['perfil-admin']);
+              //this.router.navigate(['']);
+
+            }else{
+              alert("Este usuario no es un administrador");
+
+            }
           } else if (info.status == 400) { // No existe el nombre de usuario
             alert(info.message);
           }
@@ -92,5 +98,6 @@ export class LoginAdminComponent {
 interface BookInfo {
   status : number,
   message: string,
-  token: string
+  token: string,
+  esAdmin: boolean
 }

@@ -127,6 +127,7 @@ export class RegistroClienteComponent {
                 //alert(localStorage.getItem('token'));
                 console.log('info token ', info.token)
                 //this.router.navigate(['']);
+                this.router.navigate(['landingpage']);
               } else if (info.status == 400) { // No existe el nombre de usuario
                 alert(info.message);
               }
@@ -141,7 +142,6 @@ export class RegistroClienteComponent {
           );
 
           alert("Usuario creado con exito");
-          this.router.navigate(['landingpage']);
         }else if(info.status == 400){ // Ya existe el nombre de usuario
           this.usernameExists = true;
          

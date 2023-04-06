@@ -47,22 +47,24 @@ export class LoginClienteComponent {
         password: "" + this.passwordControl.value,
       }
 
-      
-      console.log("new: ",loginUser)
       this.loginService.newLogin(loginUser).subscribe(
         res => {
           let info: BookInfo = <any>res;
-          console.log('message:', info.message);
-          console.log('status:', info.status);
-      
+
           if (info.status == 200) {
-            localStorage.setItem('token-festival', info.token)
-            alert("Login Correcto");
-            //alert(localStorage.getItem('token-festival'));
-            console.log('info token ', info.token)
-            
-            this.router.navigate(['landingpage']);
-            //this.router.navigate(['']);
+            console.log(info)
+            if(info.esAdmin){
+              alert("No puede iniciar sesión con este usuario ");
+            }else{
+              localStorage.setItem('token-festival', info.token)
+              console.log(info.token)
+              alert("Login Correcto");
+              //alert(localStorage.getItem('token-festival'));
+              
+              this.router.navigate(['landingpage']);
+              //this.router.navigate(['']);
+
+            }
           } else if (info.status == 400) { // No existe el nombre de usuario
             alert(info.message);
           }
@@ -90,5 +92,6 @@ export class LoginClienteComponent {
 interface BookInfo {
   status : number,
   message: string,
-  token: string
+  token: string,
+  esAdmin: boolean
 }
