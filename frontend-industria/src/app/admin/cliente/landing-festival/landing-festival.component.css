@@ -42,9 +42,7 @@
     border-bottom: 1px solid transparent;
     font-weight: 600;
 }
-.columna{
-    height: 50px;
-}
+
 .menu a:hover{
     background-color: #5E6A72;
     color: #FFF;
@@ -60,7 +58,7 @@ body {
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-position: center center;
-    background-attachment: fixed;
+    background-attachment: local;
 }
   
   
