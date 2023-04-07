@@ -1,0 +1,179 @@
+<body class="bg-blue-600 flex flex-row">
+  <div class="w-fit h-fit absolute z-50">
+    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" (click)="openSidebar()">
+      <svg viewBox="0 0 24 24" width="50" height="50" fill="#003049">
+        <path fill="none" d="M0 0h24v24H0V0z" />
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+      </svg>
+    </span>
+
+
+    <div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900"
+      [class.hidden]="!sidebarOpen">
+      <div class="text-gray-100 text-xl">
+        <div class="p-2.5 mt-1 flex items-center">
+          <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
+          <h1 class="font-bold text-gray-200 text-[15px] ml-3">FESTIVAL</h1>
+          <i class="bi bi-x cursor-pointer ml-28" (click)="openSidebar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path fill="white"
+                d="M19.67 5.293a1 1 0 00-1.414-1.414L12 10.586 6.747 5.333a1 1 0 00-1.414 1.414L10.586 12l-5.253 5.253a1 1 0 101.414 1.414L12 13.414l5.253 5.253a1 1 0 001.414-1.414L13.414 12l5.253-5.253z" />
+            </svg></i>
+        </div>
+        <div class="my-2 bg-gray-600 h-[1px]"></div>
+      </div>
+      <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="bi bi-house-door-fill"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(1)"
+          [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 1, 'text-white bg-azulSecundario': openTab === 1}"
+          (click)="openSidebar()">Agregar Maquinaria</span>
+      </div>
+      <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="bi bi-bookmark-fill"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(2)"
+          [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 2, 'text-white bg-azulSecundario': openTab === 2}"
+          (click)="openSidebar()">Eliminar Maquinaria</span>
+      </div>
+      <div class="my-4 bg-gray-600 h-[1px]"></div>
+
+      <div
+        class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+        <i class="bi bi-box-arrow-in-right"></i>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 shadow-lg rounded border border-white">
+    <div class="px-4 py-5 flex-auto">
+      <div class="tab-content tab-space">
+        <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
+          <div class="container">
+            <div class="flex flex-wrap -mx-4">
+              <div class="w-full px-4">
+                <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+                  <h2 class="
+                            font-bold
+                            text-3xl
+                            sm:text-4xl
+                            md:text-[40px]
+                            text-black
+                            mb-4
+                            ">
+                    Agregar Maquinaria
+                  </h2>
+                  <p class="text-base text-black ">
+                    Con nuestra suscripción, nunca más tendrás que preocuparte por perder una oferta o quedarte sin
+                    acceso a contenido exclusivo. ¡Únete a nuestra comunidad de subscriptores y haz que tus planes sean
+                    siempre perfectos!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap justify-center -mx-4">
+              <!-- Agregar Maquinaria -->
+              <section class="max-w-4xl p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-20">
+                <h1 class="text-xl font-bold text-white capitalize dark:text-white">Nueva Maquina</h1>
+                <form [formGroup]="agregarMaquinariaForm" (ngSubmit)="agregarMaquinaria()">
+                  <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+                    <div>
+                      <label class="text-white dark:text-gray-200" for="nombreMaquina">Nombre de Maquina</label>
+                      <input id="username" type="text" formControlName="nombreMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                      <label class="text-white dark:text-gray-200"  for="descripcionMaquina">Descripcion</label>
+                      <textarea id="textarea" type="textarea" formControlName="descripcionMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"></textarea>
+                    </div>
+
+                    <div>
+                      <label class="text-white dark:text-gray-200" for="tipoMaquina">Tipo de Maquina</label>
+                      <input id="emailAddress" type="text"  formControlName="tipoMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+
+                    <div>
+                      <label class="text-white dark:text-gray-200"  for="precioMaquina">Precio</label>
+                      <input id="password" type="number" formControlName="precioMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+
+                    <div>
+                      <label class="text-white dark:text-gray-200"  for="existenciaMaquina">Existencia</label>
+                      <input id="passwordConfirmation" type="number" formControlName="existenciaMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                    </div>
+                    <div>
+                      <label class="text-white dark:text-gray-200" for="paisMaquina">Pais</label>
+                      <select formControlName="paisMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <option>EEUU</option>
+                        <option>China</option>
+                        <option>Japon</option>
+                        <option>Alemania</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="text-white dark:text-gray-200" for="marcaMaquina">Marca</label>
+                      <select formControlName="marcaMaquina"
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <option>Surabaya</option>
+                        <option>Jakarta</option>
+                        <option>Tangerang</option>
+                        <option>Bandung</option>
+                      </select>
+                    </div>
+
+                  </div>
+
+                  <div class="mt-5">
+                    <label class="block text-sm font-medium text-white">
+                      Image
+                    </label>
+                    <div
+                      class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                      <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none"
+                          viewBox="0 0 48 48" aria-hidden="true">
+                          <path
+                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="flex text-sm text-gray-600">
+                          <label for="file-upload"
+                            class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                            <span class="">Upload a file</span>
+                            <input id="file-upload" name="file-upload" formControlName="imagen1Maquina"  type="file" class="sr-only">
+                          </label>
+                          <p class="pl-1 text-white">or drag and drop</p>
+                        </div>
+                        <p class="text-xs text-white">
+                          PNG, JPG, GIF up to 10MB
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flex justify-end mt-6">
+                    <button type="submit"
+                      class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-azulSecundario rounded-md hover:bg-white hover:text-azulPrimario focus:outline-none focus:bg-gray-600">Save</button>
+                  </div>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
+          <p>
+            <!-- component -->
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
