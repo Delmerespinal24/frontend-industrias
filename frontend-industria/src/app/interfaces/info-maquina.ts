@@ -1,12 +1,21 @@
 export interface InfoMaquina {
-    nombreMaquina: string;
-    descripcionMaquina: string;
-    tipoMaquina: string;
-    precioMaquina: number;
-    existenciaMaquina: number;
-    paisMaquina: string;
-    marcaMaquina: string;
-    imagen1Maquina: string;
-    imagen2Maquina: string;
-    imagen3Maquina: string;
+    nombre: string,
+    descripcion : string,
+    TipoMaquina : string,
+    marca : string,
+    pais : string,
+    precio : number,
+    existencia : number,
+    image_1 : string,
+    image_2 : string,
+    image_3 : string
 }
+
+export interface MachinesResponse {
+    status: string;
+    message: string;
+    data: InfoMaquina[];
+  }
+  
+
+

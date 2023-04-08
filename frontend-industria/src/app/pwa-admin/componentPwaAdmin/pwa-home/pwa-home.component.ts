@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { InfoMaquina } from 'src/app/interfaces/info-maquina';
+import { tap } from 'rxjs';
+import { InfoMaquina, MachinesResponse } from 'src/app/interfaces/info-maquina';
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 
 @Component({
@@ -13,12 +14,29 @@ export class PwaHomeComponent {
   openTab = 1;
   seleccion=0;
   sidebarOpen = true;
+
+  machines!: InfoMaquina[];
+  machinesResponse!: MachinesResponse;
+
   
   constructor(
 
     private nuevaMaquina:CrudMaquinaService, private router:Router,) {
 
   }
+
+  ngOnInit():void{
+
+  }
+  cargarMaquinas() {
+    this.nuevaMaquina.getMachinery().subscribe(response => {
+      this.machinesResponse = response;
+      console.log(this.machinesResponse.data[0].nombre); // log the machinery data to the console
+    });
+    
+  }
+  
+  
 
   openSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -27,6 +45,7 @@ export class PwaHomeComponent {
   toggleTabs($tabNumber: number){
     this.openTab = $tabNumber;
   }
+  
 
   
   plan(numero:number){
@@ -92,16 +111,16 @@ agregarMaquinaria(){
   console.log('info: ',this.agregarMaquinariaForm)
 
   let newAgregarMaquinaria: InfoMaquina={
-    nombreMaquina: ''+this.nombreMaquina.value,
-    descripcionMaquina: ''+this.descripcionMaquina.value,
-    tipoMaquina: ''+this.tipoMaquina.value,
-    precioMaquina:parseInt( "" + this.precioMaquina.value ),
-    existenciaMaquina:parseInt( "" + this.existenciaMaquina.value ),
-    paisMaquina: ''+this.paisMaquina.value,
-    marcaMaquina: ''+this.marcaMaquina.value,
-    imagen1Maquina: ''+this.imagen1Maquina.value,
-    imagen2Maquina: '2',
-    imagen3Maquina: '3',
+    nombre: ''+this.nombreMaquina.value,
+    descripcion: ''+this.descripcionMaquina.value,
+    TipoMaquina: ''+this.tipoMaquina.value,
+    precio:parseInt( "" + this.precioMaquina.value ),
+    existencia:parseInt( "" + this.existenciaMaquina.value ),
+    pais: ''+this.paisMaquina.value,
+    marca: ''+this.marcaMaquina.value,
+    image_1: ''+this.imagen1Maquina.value,
+    image_2: '2',
+    image_3: '3',
   }
 
   console.log("new: ",newAgregarMaquinaria)
@@ -115,6 +134,7 @@ agregarMaquinaria(){
 
         if(info.status == 200){
           alert("Maquinaria agregada");
+          this.agregarMaquinariaForm.reset();
         }else if(info.status == 400){ 
           alert("error");
          
@@ -135,6 +155,8 @@ agregarMaquinaria(){
 }
 
 interface BookInfo {
-  status : number,
-  message: string,
+  status: number;
+  message: string;
+  data: InfoMaquina[];
 }
+
