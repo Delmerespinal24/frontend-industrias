@@ -31,6 +31,7 @@ module.exports = {
       backgroundImage: {
         'mujer': "url('/assets/img/mujer1.png')",
         'logo': "url('/assets/img/Logo2.svg')",
+        'fondo':"url('/assets/img/1.svg')",
       },
     },
   },
