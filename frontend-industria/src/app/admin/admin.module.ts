@@ -9,7 +9,6 @@ import { RouterModule } from '@angular/router';
 import { PlanesComponent } from './componentAdmin/planes/planes.component';
 import { LoginClienteComponent } from './cliente/login-cliente/login-cliente.component';
 import { RegistroClienteComponent } from './cliente/registro-cliente/registro-cliente.component';
-import { LandingFestivalComponent } from './cliente/landing-festival/landing-festival.component';
 import { ProductsComponent } from './cliente/products/products.component';
 
 @NgModule({
@@ -21,7 +20,6 @@ import { ProductsComponent } from './cliente/products/products.component';
     PlanesComponent,
     LoginClienteComponent,
     RegistroClienteComponent,
-    LandingFestivalComponent,
     ProductsComponent
   ],
   imports: [

@@ -61,7 +61,7 @@ export class LoginClienteComponent {
               alert("Login Correcto");
               //alert(localStorage.getItem('token-festival'));
               
-              this.router.navigate(['landingpage']);
+              this.router.navigate(['machinery']);
               //this.router.navigate(['']);
 
             }
