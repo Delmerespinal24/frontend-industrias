@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/info-maquina';
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-pwa-home',
@@ -20,7 +21,8 @@ export class PwaHomeComponent {
 
   constructor(
     private nuevaMaquina: CrudMaquinaService,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {}
@@ -149,6 +151,11 @@ export class PwaHomeComponent {
         alert('Ha ocurrido un problema.');
       }
     });
+  }
+
+  logout(){
+    this.tokenService.RemoveToken();
+    this.router.navigate(['loginPWA']);
   }
 }
 

@@ -25,7 +25,10 @@ module.exports = {
       hueso: '#F2F3D9',
       grisClaro: '#E3E3E3',
       oscuro: '#001D29',
-      nuevo:'#84D35F'
+      nuevo:'#84D35F',
+      verde:'#104435',
+      verdeAlerta:'#1fb344',
+      verdeClaro: '#d3e0d9',
     },
     extend: {
       backgroundImage: {

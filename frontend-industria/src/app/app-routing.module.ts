@@ -11,6 +11,8 @@ import { LandingFestivalComponent } from './admin/cliente/landing-festival/landi
 import { PwaAdminModule } from './pwa-admin/pwa-admin.module';
 import { PwaLoginComponent } from './pwa-admin/componentPwaAdmin/pwa-login/pwa-login.component';
 import { PwaHomeComponent } from './pwa-admin/componentPwaAdmin/pwa-home/pwa-home.component';
+import { PwaDetallesComponent } from './pwa-admin/componentPwaAdmin/pwa-detalles/pwa-detalles.component';
+import { PwaActualizarComponent } from './pwa-admin/componentPwaAdmin/pwa-actualizar/pwa-actualizar.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,9 @@ const routes: Routes = [
   { path:'landingpage',component:LandingFestivalComponent},
   { path:'loginPWA',component:PwaLoginComponent},
   { path: 'homePWA', component: PwaHomeComponent },
+  { path: 'detalles/maquinaria/:id', component: PwaDetallesComponent },
+  { path: 'actualizar/maquinaria/:id', component: PwaActualizarComponent},
+  
 
   { path: '', component: PwaAdminModule, children: [
     { path: 'login', component: PwaLoginComponent },

@@ -41,13 +41,13 @@
       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
         <i class="bi bi-box-arrow-in-right"></i>
-        <span class="text-[15px] ml-4 text-gray-200 font-bold">Logout</span>
+        <span class="text-[15px] ml-4 text-gray-200 font-bold" (click)="logout()">Logout</span>
       </div>
     </div>
   </div>
 
   <div
-    class="relative flex flex-col min-w-0 break-words md:bg-gray-800 bg-white md:bg-opacity-50 bg-opacity-50 w-full md:w-fit  mt-20 mb-6 shadow-3xl rounded border border-white">
+    class="relative flex flex-col min-w-0 break-words md:bg-gray-800 bg-white md:bg-opacity-50 bg-opacity-50 w-full mx-20 md:w-fit  mt-20 mb-6 shadow-3xl rounded border border-white">
     <div class="px-4 py-5 flex-auto justify-center">
       <div class="tab-content tab-space">
         <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
@@ -88,8 +88,17 @@
 
                     <div>
                       <label class="text-white dark:text-gray-200" for="tipoMaquina">Tipo de Maquina</label>
-                      <input id="emailAddress" type="text" formControlName="tipoMaquina"
-                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                      <select formControlName="tipoMaquina"
+                      class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                      <option>Calderas</option>
+                      <option>Lavadoras</option>
+                      <option>Vapor Accesorios</option>
+                      <option>Secadoras</option>
+                      <option>Calentadores</option>
+                      <option>Quemadores</option>
+                      <option>Equipos Industriales</option>
+                      <option>Electricas</option>
+                    </select>
                     </div>
 
                     <div>
@@ -117,10 +126,13 @@
                       <label class="text-white dark:text-gray-200" for="marcaMaquina">Marca</label>
                       <select formControlName="marcaMaquina"
                         class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                        <option>Surabaya</option>
-                        <option>Jakarta</option>
-                        <option>Tangerang</option>
-                        <option>Bandung</option>
+                        <option>Fulton</option>
+                        <option>Alliance Laundry System</option>
+                        <option>AO Smith</option>
+                        <option>Industrial Combustion</option>
+                        <option>DWYER Instruments</option>
+                        <option>FIREYE</option>
+                        <option>Milnor Corporation</option>
                       </select>
                     </div>
 
@@ -224,7 +236,7 @@
                                 </span>
                                 <p class="flex items-center  text-gray-500 ">
                                   <span class="font-semibold mr-2 text-xs uppercase">Marca:</span>
-                                  <span>J{{maquinas.marca}}</span>
+                                  <span>{{maquinas.marca}}</span>
                                 </p>
                               </div>
 
@@ -272,7 +284,8 @@
                         <div
                           class="grid grid-cols-3 border-t divide-x text-[#007EA7]  bg-gray-50 dark:bg-transparent py-3">
                           <a
-                            class=" cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold">
+                            class=" cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
+                            routerLink="/actualizar/maquinaria/{{maquinas.idMaquina}}">
                             <div class="mr-2">
                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
                                 fill="#007EA7">
@@ -296,7 +309,8 @@
                             Eliminar
                           </a>
                           <a
-                            class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold">
+                            class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
+                            routerLink="/detalles/maquinaria/{{maquinas.idMaquina}}">
                             <div class="mr-2">
                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
                                 fill="#007EA7">

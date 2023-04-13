@@ -10,6 +10,8 @@ export class CrudMaquinaService {
   private apiUrlAgregarMaquina = 'http://localhost:4000/machinery/add'
   private apiUrlObtenerMaquina = 'http://localhost:4000/machinery'
   private apiUrlEliminarMaquina = 'http://localhost:4000/machinery/delete'
+  private apiUrlObtenerMaquinaId = 'http://localhost:4000/machinery/machine'
+  private apiUrlActualizarMaquina = 'http://localhost:4000/machinery/edit'
   // private apiUrl = 'http://ec2-44-214-12-139.compute-1.amazonaws.com:4000/signupAdmin'
   // private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/signupAdmin'
 
@@ -29,6 +31,14 @@ export class CrudMaquinaService {
 
   deleteMachine(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrlEliminarMaquina}/${id}`);
+  }
+
+  getMachine(idMaquina: string): Observable<any> {
+    return this.http.get(`${this.apiUrlObtenerMaquinaId}/${idMaquina}`);
+  }
+
+  updateMachine(idMaquina:string, machine:InfoMaquina): Observable<any>{
+    return this.http.put(`${this.apiUrlActualizarMaquina}/${idMaquina}`,machine);
   }
 
   // getMachine(): Observable<any> {

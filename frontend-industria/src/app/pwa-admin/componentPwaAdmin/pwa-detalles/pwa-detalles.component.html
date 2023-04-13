@@ -1,0 +1,98 @@
+<body class="bg-fondo bg-no-repeat bg-cover flex flex-col items-center">
+
+  <div class="py-6 w-screen">
+    <!-- Breadcrumbs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center space-x-2 text-gray-400 text-sm">
+        <a href="homePWA" class="hover:underline hover:text-gray-600">Home</a>
+        <span>
+          <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+        <a href="#" class="hover:underline hover:text-gray-600">Maquinaria</a>
+        <span>
+          <svg class="h-5 w-5 leading-none text-gray-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </span>
+        <span>Detalles</span>
+      </div>
+    </div>
+    <!-- ./ Breadcrumbs -->
+
+    <!-- component -->
+    <section class="text-gray-700 body-font overflow-hidden bg-transparent w-screen" *ngFor="let maquinas of machine">
+      <div class="container md:px-5 px-0 py-10 mx-auto">
+        <div class="lg:w-4/5 mx-auto flex flex-wrap bg-white p-10 bg-opacity-80">
+          <div class="flex flex-col lg:w-1/2 justify-center">
+            <div>
+              <img class=" w-full object-cover object-center rounded border border-gray-200" [src]="currentImage"
+                alt="Imagen actual">
+              <div class="flex w-full justify-around my-10">
+                <button (click)="changeImage(0)" class="h-10 flex items-center justify-center uppercase font-semibold px-8 border border-verde hover:bg-verde hover:text-white transition duration-500 ease-in-out">Imagen 1</button>
+                <button (click)="changeImage(1)"class="h-10 flex items-center justify-center uppercase font-semibold px-8 border border-verde hover:bg-verde hover:text-white transition duration-500 ease-in-out">Imagen 2</button>
+                <button (click)="changeImage(2)" class="h-10 flex items-center justify-center uppercase font-semibold px-8 border border-verde hover:bg-verde hover:text-white transition duration-500 ease-in-out">Imagen 3</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+            <h2 class="text-sm title-font text-gray-500 tracking-widest">{{maquinas.TipoMaquina}}</h2>
+            <h1 class="text-verde text-3xl title-font font-medium mb-1">{{maquinas.nombre}}</h1>
+            <div class="flex mb-4">
+              <span class="flex ml-1 pl-3 py-2 border-l-2 border-verde">
+                <h2 class="text-sm title-font text-gray-500 tracking-widest">{{maquinas.marca}}</h2>
+              </span>
+            </div>
+            <p class="leading-relaxed">{{maquinas.descripcion}}</p>
+              <div class="flex flex-row justify-around items-center  border-t">
+                <div class=" text-[#007EA7] pt-3 flex flex-col">
+                  <div class="w-full md:w-1/2 flex flex-row gap-4 my-4">
+
+                    <div class="flex flex-row text-sm">
+                      <span class="mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 512 512"
+                          width="20px" fill="#64748b">
+
+                          <path
+                            d="M64 32C64 14.3 49.7 0 32 0S0 14.3 0 32V64 368 480c0 17.7 14.3 32 32 32s32-14.3 32-32V352l64.3-16.1c41.1-10.3 84.6-5.5 122.5 13.4c44.2 22.1 95.5 24.8 141.7 7.4l34.7-13c12.5-4.7 20.8-16.6 20.8-30V66.1c0-23-24.2-38-44.8-27.7l-9.6 4.8c-46.3 23.2-100.8 23.2-147.1 0c-35.1-17.6-75.4-22-113.5-12.5L64 48V32z" />
+                        </svg>
+                      </span>
+                      <p class="flex items-center  text-gray-500">
+                        <span class="font-semibold mr-2 text-xs uppercase">Pais:</span>
+                        <span>{{maquinas.pais}}</span>
+                      </p>
+                    </div>
+                    <div class="flex flex-row text-sm">
+                      <span class="mr-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24"
+                          height="20px" viewBox="0 0 512 512" width="20px" fill="#64748b">
+                          <rect fill="none" height="24" width="24" />
+                          <g>
+                            <path
+                              d="M256 48c0-26.5 21.5-48 48-48H592c26.5 0 48 21.5 48 48V464c0 26.5-21.5 48-48 48H381.3c1.8-5 2.7-10.4 2.7-16V253.3c18.6-6.6 32-24.4 32-45.3V176c0-26.5-21.5-48-48-48H256V48zM571.3 347.3c6.2-6.2 6.2-16.4 0-22.6l-64-64c-6.2-6.2-16.4-6.2-22.6 0l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L480 310.6V432c0 8.8 7.2 16 16 16s16-7.2 16-16V310.6l36.7 36.7c6.2 6.2 16.4 6.2 22.6 0zM0 176c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H16c-8.8 0-16-7.2-16-16V176zm352 80V480c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V256H352zM144 320c-8.8 0-16 7.2-16 16s7.2 16 16 16h96c8.8 0 16-7.2 16-16s-7.2-16-16-16H144z" />
+                          </g>
+                        </svg> </span>
+                      <p class="flex items-center  text-gray-500">
+                        <span class="font-semibold mr-2 text-xs uppercase">Existencia:</span>
+                        <span>{{maquinas.existencia}}</span>
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            <div class="flex">
+              <span class="title-font font-medium text-2xl text-gray-900">$ {{maquinas.precio}}</span>
+              <button
+                class="flex ml-auto text-white bg-verde border-0 py-2 px-6 focus:outline-none hover:text-white hover:bg-verdeAlerta rounded">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
