@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/info-maquina';
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
+import { Token } from 'src/app/interfaces/token';
+import { TokenClientService } from 'src/app/service/tokenClient.service';
 
 @Component({
   selector: 'app-products',
@@ -19,16 +21,47 @@ export class ProductsComponent {
     machines!: InfoMaquina2[];
     machinesResponse!: MachinesResponse;
     maquina:any;
+
+    token!:Token;
+    infoToken:any;
+    dropdownVisible = false;
+    isLoggedIn = false;
   
     constructor(
       private nuevaMaquina: CrudMaquinaService,
-      private router: Router
-      
-    ) {}
+      private router: Router,
+      private TokenClientService: TokenClientService
+    ) {
+      this.token = { token: this.TokenClientService.getToken() };
+
+      if (this.token.token) {
+        this.isLoggedIn = true;
+
+        this.TokenClientService.decodedToken(this.token).subscribe({
+          next: res => {
+            this.infoToken = res.data;
+        
+          },
+          error: error => {
+            console.log(error);
+          }
+        });
+      }
+    }
   
     ngOnInit(): void {
       this.cargarMaquinas();
     }
+
+    toggleDropdown() {
+      this.dropdownVisible = !this.dropdownVisible;
+    }
+  
+    logout(){
+      this.TokenClientService.RemoveToken();
+      this.router.navigate(['login-festival'])
+    }
+
     cargarMaquinas() {
       this.nuevaMaquina.getMachinery().subscribe((response) => {
         this.machinesResponse = response;

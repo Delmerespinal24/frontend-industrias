@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/app/interfaces/login';
+import { TokenClientService } from 'src/app/service/tokenClient.service';
 
 @Component({
   selector: 'app-login-cliente',
@@ -12,10 +13,17 @@ import { Login } from 'src/app/interfaces/login';
 })
 export class LoginClienteComponent {
   constructor(
-    
-    private loginService:LoginService, private router:Router) {
+    private loginService:LoginService, private router:Router, private TokenClientService: TokenClientService,) {
+
+      let token = { token: this.TokenClientService.getToken() };
+
+      if (token.token) {
+        this.router.navigate(['machinery']);
+      }
+
 
   }
+
 
   loginForm=new FormGroup({
     correo: new FormControl('', [Validators.required]),
