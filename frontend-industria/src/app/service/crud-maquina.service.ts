@@ -7,11 +7,15 @@ import { InfoMaquina, MachinesResponse } from '../interfaces/info-maquina';
   providedIn: 'root'
 })
 export class CrudMaquinaService {
+
   private apiUrlAgregarMaquina = 'http://localhost:4000/machinery/add'
   private apiUrlObtenerMaquina = 'http://localhost:4000/machinery'
   private apiUrlEliminarMaquina = 'http://localhost:4000/machinery/delete'
   private apiUrlObtenerMaquinaId = 'http://localhost:4000/machinery/machine'
   private apiUrlActualizarMaquina = 'http://localhost:4000/machinery/edit'
+  private apiUrlAgregarMaquina = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/machinery/add'
+  private apiUrlObtenerMaquina = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/machinery'
+  private apiUrlEliminarMaquina = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/machinery/delete'
   // private apiUrl = 'http://ec2-44-214-12-139.compute-1.amazonaws.com:4000/signupAdmin'
   // private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/signupAdmin'
 
