@@ -13,6 +13,7 @@ import { PwaHomeComponent } from './pwa-admin/componentPwaAdmin/pwa-home/pwa-hom
 import { PwaDetallesComponent } from './pwa-admin/componentPwaAdmin/pwa-detalles/pwa-detalles.component';
 import { PwaActualizarComponent } from './pwa-admin/componentPwaAdmin/pwa-actualizar/pwa-actualizar.component';
 import { ProductsComponent } from './admin/cliente/products/products.component';
+import { ProductDetailsComponent } from './admin/cliente/product-details/product-details.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'homePWA', component: PwaHomeComponent },
   { path: 'detalles/maquinaria/:id', component: PwaDetallesComponent },
   { path: 'actualizar/maquinaria/:id', component: PwaActualizarComponent},
-  
+  { path: 'machinery/detalles/:id', component: ProductDetailsComponent},
 
   { path: '', component: PwaAdminModule, children: [
     { path: 'login', component: PwaLoginComponent },

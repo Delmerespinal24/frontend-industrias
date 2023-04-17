@@ -5,6 +5,8 @@ import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { Token } from 'src/app/interfaces/token';
 import { TokenClientService } from 'src/app/service/tokenClient.service';
+import { Filtro } from 'src/app/interfaces/filtro';
+import { FiltroService } from 'src/app/service/filtro.service';
 
 @Component({
   selector: 'app-products',
@@ -21,6 +23,7 @@ export class ProductsComponent {
     machines!: InfoMaquina2[];
     machinesResponse!: MachinesResponse;
     maquina:any;
+    listaMaquinas!:any[];
 
     token!:Token;
     infoToken:any;
@@ -30,7 +33,8 @@ export class ProductsComponent {
     constructor(
       private nuevaMaquina: CrudMaquinaService,
       private router: Router,
-      private TokenClientService: TokenClientService
+      private TokenClientService: TokenClientService,
+      private filtroService: FiltroService
     ) {
       this.token = { token: this.TokenClientService.getToken() };
 
@@ -65,24 +69,9 @@ export class ProductsComponent {
     cargarMaquinas() {
       this.nuevaMaquina.getMachinery().subscribe((response) => {
         this.machinesResponse = response;
+        this.listaMaquinas = this.machinesResponse.data
         console.log(this.machinesResponse); // log the machinery data to the console
       });
-    }
-  
-    deleteMachine(idMaquina: number) {
-      console.log('id: ', idMaquina)
-      this.nuevaMaquina.deleteMachine(idMaquina).subscribe(
-        response => {
-          console.log(response);
-          alert('Maquina eliminada');
-          this.cargarMaquinas();
-          // handle success
-        },
-        error => {
-          console.error(error);
-          // handle error
-        }
-      );
     }
     
   
@@ -150,43 +139,28 @@ export class ProductsComponent {
       return this.agregarMaquinariaForm.get('imagen1Maquina') as FormControl;
     }
   
-    agregarMaquinaria() {
-      console.log('info: ', this.agregarMaquinariaForm);
-  
-      let newAgregarMaquinaria: InfoMaquina = {
-        nombre: '' + this.nombreMaquina.value,
-        descripcion: '' + this.descripcionMaquina.value,
-        TipoMaquina: '' + this.tipoMaquina.value,
-        precio: parseInt('' + this.precioMaquina.value),
-        existencia: parseInt('' + this.existenciaMaquina.value),
-        pais: '' + this.paisMaquina.value,
-        marca: '' + this.marcaMaquina.value,
-        image_1: '' + this.imagen1Maquina.value,
-        image_2: '2',
-        image_3: '3',
-      };
-  
-      console.log('new: ', newAgregarMaquinaria);
-  
-      this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
-        let info: BookInfo = <any>res;
-  
-        console.log('message:', info.message);
-        console.log('status:', info.status);
-  
-        if (info.status == 200) {
-          alert('Maquinaria agregada');
-          this.agregarMaquinariaForm.reset();
-        } else if (info.status == 400) {
-          alert('error');
-        } else if (info.status == 401) {
-          alert('error');
-        } else if (info.status == 402) {
-          alert('error');
-        } else {
-          alert('Ha ocurrido un problema.');
-        }
-      });
+
+    filtrar(marca="", nombre="",TipoMaquina="",pais="",precioMinimo="",precioMaximo=""){
+      let newFiltro: Filtro = {
+        nombre: nombre,
+        TipoMaquina: TipoMaquina,
+        marca: marca,
+        pais: pais,
+        precioMinimo: precioMinimo,
+        precioMaximo: precioMaximo
+
+      }
+
+      if(nombre=="" && TipoMaquina=="" && marca=="" && pais=="" && precioMinimo=="" && precioMaximo==""){
+        alert('No se han encontrado resultados');
+
+      }else{
+        this.filtroService.filtrar(newFiltro).subscribe((res) => {
+          let info: BookInfo = <any>res;
+          this.listaMaquinas = info.resultado;
+        })
+      }
+
     }
   
 }
@@ -195,6 +169,7 @@ interface BookInfo {
   status: number;
   message: string;
   data: InfoMaquina[];
+  resultado: any[];
 }
 
 

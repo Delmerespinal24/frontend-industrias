@@ -8,7 +8,8 @@ import { InfoPagoAdmin } from '../interfaces/info-pago-admin';
 })
 export class PagoService {
 
-  private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/paymentPlan'
+  private apiUrl = 'http://localhost:4000/paymentPlan'
+  // private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/paymentPlan'
   // private apiUrl = 'http://ec2-44-214-12-139.compute-1.amazonaws.com:4000/signupAdmin'
   // private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/signupAdmin'
 

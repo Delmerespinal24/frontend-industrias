@@ -19,7 +19,8 @@ export class TokenClientService {
 
   decodedToken(token: any): Observable<any> {
     return this.http.post<any>(
-      'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/userData',
+      //'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000/userData',
+      'http://localhost:4000/userData',
       token
     );
   }

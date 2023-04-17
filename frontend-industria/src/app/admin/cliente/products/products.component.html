@@ -13,7 +13,7 @@
         <div class="text-gray-100 text-xl">
           <div class="p-2.5 mt-1 flex items-center">
             <i class="bi bi-app-indicator px-2 py-1 rounded-md bg-blue-600"></i>
-            <h1 class="font-bold text-gray-200 text-[15px] ml-3">{{infoToken.user.primerNombre}}</h1>
+            <h1 class="font-bold text-gray-200 text-[15px] ml-3">{{infoToken.user.nombreUsuario}}</h1>
             <i class="bi bi-x cursor-pointer ml-28" (click)="openSidebar()">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path fill="white"
@@ -24,13 +24,35 @@
         </div>
         <div
           class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-          <i class="bi bi-bookmark-fill"></i>
-          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(2)"
-            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 2, 'text-white bg-azulSecundario': openTab === 2}"
+          <i class="all-brands"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(1)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 1, 'text-white bg-azulSecundario': openTab === 1}"
             (click)="openSidebar()" (click)="cargarMaquinas()">Todas las marcas</span>
         </div>
-        <div class="my-4 bg-gray-600 h-[1px]"></div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-1"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(2)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 2, 'text-white bg-azulSecundario': openTab === 2}"
+            (click)="openSidebar()" (click)="filtrar('Fulton')">Fulton</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(3)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 3, 'text-white bg-azulSecundario': openTab === 3}"
+            (click)="openSidebar()" (click)="filtrar('AO Smith')">AO Smith</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-3"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(4)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 4, 'text-white bg-azulSecundario': openTab === 4}"
+            (click)="openSidebar()" (click)="filtrar('Alliance Laundry Systems')">Alliance Laundry Systems</span>
+        </div>
   
+
+        <div class="my-4 bg-gray-600 h-[1px]"></div>  
         <div
           class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
           <i class="bi bi-box-arrow-in-right"></i>
@@ -63,7 +85,7 @@
                 </div>
         
                 <div  class="gallery" >
-                    <div class="content" *ngFor="let item of machinesResponse?.data" >
+                    <div class="content" *ngFor="let item of listaMaquinas" >
                         <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
                                     alt="image"/>
                         <table style="width: 100%">
@@ -73,7 +95,7 @@
                         </table>    
                         <p class="info">L. {{item.precio}}</p>
                         <!--<p class="h5-descrip">{{item.descricion}}</p>-->
-                        <button type="button-watch" class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ver detalles</button>
+                        <button type="button-watch" class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop" routerLink="/machinery/detalles/{{item.idMaquina}}">Ver detalles</button>
                     </div>
                 </div> 
 

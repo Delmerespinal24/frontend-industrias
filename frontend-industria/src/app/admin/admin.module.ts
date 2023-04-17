@@ -10,6 +10,7 @@ import { PlanesComponent } from './componentAdmin/planes/planes.component';
 import { LoginClienteComponent } from './cliente/login-cliente/login-cliente.component';
 import { RegistroClienteComponent } from './cliente/registro-cliente/registro-cliente.component';
 import { ProductsComponent } from './cliente/products/products.component';
+import { ProductDetailsComponent } from './cliente/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductsComponent } from './cliente/products/products.component';
     PlanesComponent,
     LoginClienteComponent,
     RegistroClienteComponent,
-    ProductsComponent
+    ProductsComponent,
+    ProductDetailsComponent
   ],
   imports: [
     CommonModule,
