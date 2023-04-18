@@ -8,7 +8,7 @@ import { InfoMaquina, MachinesResponse } from '../interfaces/info-maquina';
 })
 export class CrudMaquinaService {
   private apiUrlAgregarMaquina = 'http://localhost:4000/machinery/add'
-  private apiUrlObtenerMaquina = 'http://localhost:4000/machinery'
+  private apiUrlObtenerMaquina = 'https://44.207.27.36/machinery'
   private apiUrlEliminarMaquina = 'http://localhost:4000/machinery/delete'
   private apiUrlObtenerMaquinaId = 'http://localhost:4000/machinery/machine'
   private apiUrlActualizarMaquina = 'http://localhost:4000/machinery/edit'
