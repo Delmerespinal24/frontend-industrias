@@ -19,8 +19,12 @@ export class TokenClientService {
 
   decodedToken(token: any): Observable<any> {
     return this.http.post<any>(
-      'http://localhost:4000/userData',
+
+      'https://44.207.27.36/userData',
       token
+
+      // 'http://localhost:4000/userData',
+      // token
     );
   }
 }

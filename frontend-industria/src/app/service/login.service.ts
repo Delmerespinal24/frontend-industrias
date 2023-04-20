@@ -7,7 +7,10 @@ import { Login } from 'src/app/interfaces/login';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = 'http://localhost:4000/login'
+
+  private apiUrl = 'https://44.207.27.36/login'
+
+  // private apiUrl = 'http://localhost:4000/login'
   // private apiUrl = 'http://ec2-52-71-59-232.compute-1.amazonaws.com:4000//login'
 
   constructor(private http: HttpClient) { }
