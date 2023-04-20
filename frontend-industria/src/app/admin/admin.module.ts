@@ -11,6 +11,7 @@ import { LoginClienteComponent } from './cliente/login-cliente/login-cliente.com
 import { RegistroClienteComponent } from './cliente/registro-cliente/registro-cliente.component';
 import { ProductsComponent } from './cliente/products/products.component';
 import { ProductDetailsComponent } from './cliente/product-details/product-details.component';
+import { CustomerPaymentComponent } from './cliente/customer-payment/customer-payment.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductDetailsComponent } from './cliente/product-details/product-detai
     LoginClienteComponent,
     RegistroClienteComponent,
     ProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CustomerPaymentComponent
   ],
   imports: [
     CommonModule,

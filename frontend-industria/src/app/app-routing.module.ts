@@ -14,6 +14,7 @@ import { PwaDetallesComponent } from './pwa-admin/componentPwaAdmin/pwa-detalles
 import { PwaActualizarComponent } from './pwa-admin/componentPwaAdmin/pwa-actualizar/pwa-actualizar.component';
 import { ProductsComponent } from './admin/cliente/products/products.component';
 import { ProductDetailsComponent } from './admin/cliente/product-details/product-details.component';
+import { CustomerPaymentComponent } from './admin/cliente/customer-payment/customer-payment.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'detalles/maquinaria/:id', component: PwaDetallesComponent },
   { path: 'actualizar/maquinaria/:id', component: PwaActualizarComponent},
   { path: 'machinery/detalles/:id', component: ProductDetailsComponent},
+  { path: 'machinery/detalles/payment/:id', component: CustomerPaymentComponent},
 
   { path: '', component: PwaAdminModule, children: [
     { path: 'login', component: PwaLoginComponent },
