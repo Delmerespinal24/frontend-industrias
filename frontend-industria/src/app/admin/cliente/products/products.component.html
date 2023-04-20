@@ -38,17 +38,45 @@
         </div>
         <div
           class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-          <i class="brand-2"></i>
+          <i class="brand-3"></i>
           <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(3)"
             [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 3, 'text-white bg-azulSecundario': openTab === 3}"
+            (click)="openSidebar()" (click)="filtrar('Alliance Laundry Systems')">Alliance Laundry Systems</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(4)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 4, 'text-white bg-azulSecundario': openTab === 4}"
             (click)="openSidebar()" (click)="filtrar('AO Smith')">AO Smith</span>
         </div>
         <div
           class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-          <i class="brand-3"></i>
-          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(4)"
-            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 4, 'text-white bg-azulSecundario': openTab === 4}"
-            (click)="openSidebar()" (click)="filtrar('Alliance Laundry Systems')">Alliance Laundry Systems</span>
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(5)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 5, 'text-white bg-azulSecundario': openTab === 5}"
+            (click)="openSidebar()" (click)="filtrar('Industrial Combustion')">Industrial Combustion</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(6)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 6, 'text-white bg-azulSecundario': openTab === 6}"
+            (click)="openSidebar()" (click)="filtrar('DWYER Instruments')">DWYER Instruments</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(7)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 7, 'text-white bg-azulSecundario': openTab === 7}"
+            (click)="openSidebar()" (click)="filtrar('FIREYE')">FIREYE</span>
+        </div>
+        <div
+          class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
+          <i class="brand-2"></i>
+          <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(8)"
+            [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 8, 'text-white bg-azulSecundario': openTab === 8}"
+            (click)="openSidebar()" (click)="filtrar('Milnor Corporation')">Milnor Corporation</span>
         </div>
   
 

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InfoPagoAdmin } from '../interfaces/info-pago-admin';
-import { url } from './apiurl';
+import { url } from './api-url';
 
 @Injectable({
   providedIn: 'root'

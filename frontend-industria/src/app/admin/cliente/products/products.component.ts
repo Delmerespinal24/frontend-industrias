@@ -15,154 +15,170 @@ import { FiltroService } from 'src/app/service/filtro.service';
 })
 export class ProductsComponent {
 
-  
-    openTab = 1;
-    seleccion = 0;
-    sidebarOpen = true;
-  
-    machines!: InfoMaquina2[];
-    machinesResponse!: MachinesResponse;
-    maquina:any;
-    listaMaquinas!:any[];
 
-    token!:Token;
-    infoToken:any;
-    dropdownVisible = false;
-    isLoggedIn = false;
-  
-    constructor(
-      private nuevaMaquina: CrudMaquinaService,
-      private router: Router,
-      private TokenClientService: TokenClientService,
-      private filtroService: FiltroService
-    ) {
-      this.token = { token: this.TokenClientService.getToken() };
+  openTab = 1;
+  seleccion = 0;
+  sidebarOpen = true;
 
-      if (this.token.token) {
-        this.isLoggedIn = true;
+  machines!: InfoMaquina2[];
+  machinesResponse!: MachinesResponse;
+  maquina: any;
+  listaMaquinas!: any[];
 
-        this.TokenClientService.decodedToken(this.token).subscribe({
-          next: res => {
-            this.infoToken = res.data;
-        
-          },
-          error: error => {
-            console.log(error);
-          }
-        });
-      }
-    }
-  
-    ngOnInit(): void {
-      this.cargarMaquinas();
-    }
+  token!: Token;
+  infoToken: any;
+  dropdownVisible = false;
+  isLoggedIn = false;
 
-    toggleDropdown() {
-      this.dropdownVisible = !this.dropdownVisible;
-    }
-  
-    logout(){
-      this.TokenClientService.RemoveToken();
-      this.router.navigate(['login-festival'])
-    }
+  constructor(
+    private nuevaMaquina: CrudMaquinaService,
+    private router: Router,
+    private TokenClientService: TokenClientService,
+    private filtroService: FiltroService
+  ) {
+    this.token = { token: this.TokenClientService.getToken() };
 
-    cargarMaquinas() {
-      this.nuevaMaquina.getMachinery().subscribe((response) => {
-        this.machinesResponse = response;
-        this.listaMaquinas = this.machinesResponse.data
-        console.log(this.machinesResponse); // log the machinery data to the console
+    if (this.token.token) {
+      this.isLoggedIn = true;
+
+      this.TokenClientService.decodedToken(this.token).subscribe({
+        next: res => {
+          this.infoToken = res.data;
+
+        },
+        error: error => {
+          console.log(error);
+        }
       });
     }
-    
-  
-    openSidebar() {
-      this.sidebarOpen = !this.sidebarOpen;
-    }
-  
-    toggleTabs($tabNumber: number) {
-      this.openTab = $tabNumber;
-    }
-  
-    plan(numero: number) {
-      this.seleccion = numero;
-  
-      if (this.seleccion == 1) {
-      }
-      if (this.seleccion == 2) {
-      }
-      if (this.seleccion == 3) {
-      } else {
-      }
-    }
-  
-    agregarMaquinariaForm = new FormGroup({
-      nombreMaquina: new FormControl('', [Validators.required]),
-      descripcionMaquina: new FormControl('', [Validators.required]),
-      tipoMaquina: new FormControl('', [Validators.required]),
-      precioMaquina: new FormControl('', [Validators.required]),
-      existenciaMaquina: new FormControl('', [Validators.required]),
-      paisMaquina: new FormControl('', [Validators.required]),
-      marcaMaquina: new FormControl('', [Validators.required]),
-      imagen1Maquina: new FormControl('', [Validators.required]),
-      imagen2Maquina: new FormControl('1'),
-      imagen3Maquina: new FormControl('2'),
+  }
+
+  ngOnInit(): void {
+    this.cargarMaquinas();
+  }
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  logout() {
+    this.TokenClientService.RemoveToken();
+    this.router.navigate(['login-festival'])
+  }
+
+  cargarMaquinas() {
+    this.nuevaMaquina.getMachinery().subscribe((response) => {
+      this.machinesResponse = response;
+      this.listaMaquinas = this.machinesResponse.data
+      console.log(this.machinesResponse); // log the machinery data to the console
     });
-  
-    get nombreMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('nombreMaquina') as FormControl;
-    }
-    get descripcionMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('descripcionMaquina') as FormControl;
-    }
-  
-    get tipoMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('tipoMaquina') as FormControl;
-    }
-  
-    get precioMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('precioMaquina') as FormControl;
-    }
-  
-    get existenciaMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('existenciaMaquina') as FormControl;
-    }
-  
-    get paisMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('paisMaquina') as FormControl;
-    }
-  
-    get marcaMaquina(): FormControl {
-      return this.agregarMaquinariaForm.get('marcaMaquina') as FormControl;
-    }
-  
-    get imagen1Maquina(): FormControl {
-      return this.agregarMaquinariaForm.get('imagen1Maquina') as FormControl;
-    }
-  
+  }
 
-    filtrar(marca="", nombre="",TipoMaquina="",pais="",precioMinimo="",precioMaximo=""){
-      let newFiltro: Filtro = {
-        nombre: nombre,
-        TipoMaquina: TipoMaquina,
-        marca: marca,
-        pais: pais,
-        precioMinimo: precioMinimo,
-        precioMaximo: precioMaximo
 
-      }
+  openSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
 
-      if(nombre=="" && TipoMaquina=="" && marca=="" && pais=="" && precioMinimo=="" && precioMaximo==""){
-        alert('No se han encontrado resultados');
+  toggleTabs($tabNumber: number) {
+    this.openTab = $tabNumber;
+  }
 
-      }else{
+  plan(numero: number) {
+    this.seleccion = numero;
+
+    if (this.seleccion == 1) {
+    }
+    if (this.seleccion == 2) {
+    }
+    if (this.seleccion == 3) {
+    } else {
+    }
+  }
+
+  agregarMaquinariaForm = new FormGroup({
+    nombreMaquina: new FormControl('', [Validators.required]),
+    descripcionMaquina: new FormControl('', [Validators.required]),
+    tipoMaquina: new FormControl('', [Validators.required]),
+    precioMaquina: new FormControl('', [Validators.required]),
+    existenciaMaquina: new FormControl('', [Validators.required]),
+    paisMaquina: new FormControl('', [Validators.required]),
+    marcaMaquina: new FormControl('', [Validators.required]),
+    imagen1Maquina: new FormControl('', [Validators.required]),
+    imagen2Maquina: new FormControl('1'),
+    imagen3Maquina: new FormControl('2'),
+  });
+
+  get nombreMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('nombreMaquina') as FormControl;
+  }
+  get descripcionMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('descripcionMaquina') as FormControl;
+  }
+
+  get tipoMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('tipoMaquina') as FormControl;
+  }
+
+  get precioMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('precioMaquina') as FormControl;
+  }
+
+  get existenciaMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('existenciaMaquina') as FormControl;
+  }
+
+  get paisMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('paisMaquina') as FormControl;
+  }
+
+  get marcaMaquina(): FormControl {
+    return this.agregarMaquinariaForm.get('marcaMaquina') as FormControl;
+  }
+
+  get imagen1Maquina(): FormControl {
+    return this.agregarMaquinariaForm.get('imagen1Maquina') as FormControl;
+  }
+
+
+  filtrar(marca = "", nombre = "", TipoMaquina = "", pais = "", precioMinimo = "", precioMaximo = "") {
+    let newFiltro: Filtro = {
+      nombre: nombre,
+      TipoMaquina: TipoMaquina,
+      marca: marca,
+      pais: pais,
+      precioMinimo: precioMinimo,
+      precioMaximo: precioMaximo
+
+    }
+
+    if (nombre == "" && TipoMaquina == "" && marca == "" && pais == "" && precioMinimo == "" && precioMaximo == "") {
+      alert('No se han encontrado resultados');
+      this.listaMaquinas = [];
+
+    } else {
+      try {
         this.filtroService.filtrar(newFiltro).subscribe((res) => {
           let info: BookInfo = <any>res;
-          this.listaMaquinas = info.resultado;
+          console.log(info)
+          if (info.status == 200) {
+            this.listaMaquinas = info.resultado;
+          } else {
+            alert('No se han encontrado resultados');
+            this.listaMaquinas = [];
+          }
         })
+
+      } catch (error) {
+        alert('No se han encontrado resultados');
+        this.listaMaquinas = [];
+
       }
 
+
     }
-  
+
+  }
+
 }
 
 interface BookInfo {

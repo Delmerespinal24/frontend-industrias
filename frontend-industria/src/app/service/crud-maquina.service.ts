@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { InfoMaquina, MachinesResponse } from '../interfaces/info-maquina';
-import { url } from './apiurl';
+import { url } from './api-url';
 
 @Injectable({
   providedIn: 'root'

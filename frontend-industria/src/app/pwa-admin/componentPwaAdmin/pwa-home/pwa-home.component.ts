@@ -4,6 +4,7 @@ import { Router, RouterLink } from '@angular/router';
 import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/info-maquina';
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { TokenService } from 'src/app/service/token.service';
+import { ImagenService } from 'src/app/service/imagen.service';
 
 @Component({
   selector: 'app-pwa-home',
@@ -17,20 +18,28 @@ export class PwaHomeComponent {
 
   machines!: InfoMaquina2[];
   machinesResponse!: MachinesResponse;
-  maquina:any;
+  maquina: any;
+
+  archivosNew: any = []; //Sera de tipo array
+  srcArrayNew: any = [];
 
   constructor(
     private nuevaMaquina: CrudMaquinaService,
     private router: Router,
-    private tokenService: TokenService
-  ) {}
+    private tokenService: TokenService,
+    private imagenService: ImagenService
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
   cargarMaquinas() {
     this.nuevaMaquina.getMachinery().subscribe((response) => {
       this.machinesResponse = response;
       console.log(this.machinesResponse); // log the machinery data to the console
     });
+
+    this.srcArrayNew.length = 0;
+    this.archivosNew.length = 0;
+    this.agregarMaquinariaForm.reset();
   }
 
   deleteMachine(idMaquina: number) {
@@ -48,7 +57,7 @@ export class PwaHomeComponent {
       }
     );
   }
-  
+
 
   openSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -114,46 +123,112 @@ export class PwaHomeComponent {
     return this.agregarMaquinariaForm.get('imagen1Maquina') as FormControl;
   }
 
-  agregarMaquinaria() {
-    console.log('info: ', this.agregarMaquinariaForm);
+  capturarFileNew(event: any) {
+    console.log('este corresponde a nuevo');
 
-    let newAgregarMaquinaria: InfoMaquina = {
-      nombre: '' + this.nombreMaquina.value,
-      descripcion: '' + this.descripcionMaquina.value,
-      TipoMaquina: '' + this.tipoMaquina.value,
-      precio: parseInt('' + this.precioMaquina.value),
-      existencia: parseInt('' + this.existenciaMaquina.value),
-      pais: '' + this.paisMaquina.value,
-      marca: '' + this.marcaMaquina.value,
-      image_1: '' + this.imagen1Maquina.value,
-      image_2: '2',
-      image_3: '3',
-    };
+    if (event.target.files.length > 0) {
+      if (event.target.files.length <= 10) {
+        let files = event.target.files;
 
-    console.log('new: ', newAgregarMaquinaria);
-
-    this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
-      let info: BookInfo = <any>res;
-
-      console.log('message:', info.message);
-      console.log('status:', info.status);
-
-      if (info.status == 200) {
-        alert('Maquinaria agregada');
-        this.agregarMaquinariaForm.reset();
-      } else if (info.status == 400) {
-        alert('error');
-      } else if (info.status == 401) {
-        alert('error');
-      } else if (info.status == 402) {
-        alert('error');
+        let file;
+        for (let i = 0; i < files.length; i++) {
+          if (this.archivosNew.length < 10) {
+            file = files[i];
+            this.archivosNew.push(file);
+            const reader = new FileReader();
+            reader.onload = (file) => {
+              this.srcArrayNew.push({
+                img: reader.result,
+                id: this.srcArrayNew.length == 0 ? 0 : this.srcArrayNew.length,
+              });
+            };
+            reader.readAsDataURL(file);
+          } else {
+            window.alert('No mas de 3 imagenes');
+          }
+        }
       } else {
-        alert('Ha ocurrido un problema.');
+        window.alert('No mas de 3 imagenes');
       }
-    });
+    }
+  }
+  deleteFileNew(id: number) {
+    this.srcArrayNew.splice(id, 1);
+    this.archivosNew.splice(id, 1);
+
+    for (let i = 0; i < this.srcArrayNew.length; i++) {
+      this.srcArrayNew[i].id = i;
+    }
   }
 
-  logout(){
+  agregarMaquinaria() {
+
+    if (this.srcArrayNew.length >= 1) {
+
+      console.log('info: ', this.agregarMaquinariaForm);
+
+      let newAgregarMaquinaria: InfoMaquina = {
+        nombre: '' + this.nombreMaquina.value,
+        descripcion: '' + this.descripcionMaquina.value,
+        TipoMaquina: '' + this.tipoMaquina.value,
+        precio: parseInt('' + this.precioMaquina.value),
+        existencia: parseInt('' + this.existenciaMaquina.value),
+        pais: '' + this.paisMaquina.value,
+        marca: '' + this.marcaMaquina.value,
+        image_1: '1',
+        image_2: '2',
+        image_3: '3',
+      };
+      console.log('new: ', newAgregarMaquinaria);
+
+
+      this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
+        let info: BookInfo = <any>res;
+
+        console.log('message:', info.message);
+        console.log('status:', info.status);
+
+        if (info.status == 200) {
+          alert('Maquinaria agregada');
+
+          //Recorre el arreglo de archivos
+          this.archivosNew.forEach((archivo: any) => {
+            const formularioDeDatos = new FormData();
+            formularioDeDatos.append('image', archivo);
+            console.log(archivo);
+
+            //Sube archivo uno por uno
+            this.imagenService.maquinariaImagen(formularioDeDatos, '' + info.idMaquina)
+              .subscribe((res) => {
+                console.log('Respuesta ', res);
+              })
+          });
+
+          this.archivosNew.length = 0;
+          this.srcArrayNew.length = 0;
+          alert('Producto cargado exitosamente')
+
+          this.agregarMaquinariaForm.reset();
+        } else if (info.status == 400) {
+          alert('error');
+        } else if (info.status == 401) {
+          alert('error');
+        } else if (info.status == 402) {
+          alert('error');
+        } else {
+          alert('Ha ocurrido un problema.');
+        }
+      });
+
+      //* Dentro de agregar maquina recibe id de la maquina
+
+    } else {
+      alert('Debes cargar al menos una imagen');
+    }
+
+  }
+
+  logout() {
     this.tokenService.RemoveToken();
     this.router.navigate(['loginPWA']);
   }
@@ -162,5 +237,5 @@ export class PwaHomeComponent {
 interface BookInfo {
   status: number;
   message: string;
-  data: InfoMaquina[];
+  idMaquina: number;
 }

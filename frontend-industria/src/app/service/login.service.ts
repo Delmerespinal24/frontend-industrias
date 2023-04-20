@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Login } from 'src/app/interfaces/login';
-import { url } from './apiurl';
+import { url } from './api-url';
 
 @Injectable({
   providedIn: 'root'

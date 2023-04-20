@@ -89,16 +89,16 @@
                     <div>
                       <label class="text-white dark:text-gray-200" for="tipoMaquina">Tipo de Maquina</label>
                       <select formControlName="tipoMaquina"
-                      class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                      <option>Calderas</option>
-                      <option>Lavadoras</option>
-                      <option>Vapor Accesorios</option>
-                      <option>Secadoras</option>
-                      <option>Calentadores</option>
-                      <option>Quemadores</option>
-                      <option>Equipos Industriales</option>
-                      <option>Electricas</option>
-                    </select>
+                        class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <option>Calderas</option>
+                        <option>Lavadoras</option>
+                        <option>Vapor Accesorios</option>
+                        <option>Secadoras</option>
+                        <option>Calentadores</option>
+                        <option>Quemadores</option>
+                        <option>Equipos Industriales</option>
+                        <option>Electricas</option>
+                      </select>
                     </div>
 
                     <div>
@@ -139,37 +139,39 @@
                   </div>
 
                   <div class="mt-5">
-                    <label class="block text-sm font-medium text-white">
-                      Imagen
-                    </label>
-                    <div
-                      class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                      <div class="space-y-1 text-center">
-                        <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none" viewBox="0 0 48 48"
-                          aria-hidden="true">
-                          <path
-                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                        <div class="flex text-sm text-gray-600">
-                          <label for="file-upload"
-                            class="relative cursor-pointer bg-white rounded-md font-medium p-2 ml-2 text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
-                            <span class="">Subir un archivo</span>
-                            <input id="file-upload" name="file-upload" formControlName="imagen1Maquina" type="file"
-                              class="sr-only">
-                          </label>
-                          <!-- <p class="pl-1 text-white">or drag and drop</p> -->
+                    <div class="form-group">
+                      <label [for]="archivosNew.length<3?'ima':''">
+                        <div class="content-upload-image">
+                          <svg class="mx-auto h-12 w-12 text-white" stroke="currentColor" fill="none"
+                            viewBox="0 0 48 48" aria-hidden="true">
+                            <path
+                              d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
                         </div>
-                        <p class="text-xs text-white">
-                          PNG, JPG, GIF hasta 10MB
-                        </p>
+                        <div style="display:inline-block;width: 100%; font-size: 13px;;text-align: center;">
+                          <p class="text-xs text-white ">
+                            La foto es requerida(Máximo 3 imágenes)
+                          </p>
+                        </div>
+                      </label>
+                      <input accept="image/*" id="ima" style="display: none; visibility: none;"
+                        class="form-control-file" (change)="capturarFileNew($event)" type="file"
+                        placeholder="seleccciona" multiple>
+                    </div>
+                    <!--Previsualización-->
+                    <div class="container-images-new" style="display:flex;">
+                      <div class="pre-imagen-new" *ngFor="let item of srcArrayNew"
+                        [style]="'background-image: url('+item.img+');width:33%;height: 100px;background-size:contain; background-repeat: no-repeat;'">
+                        <h5 class="deleteFile-new" (click)="deleteFileNew(item.id)">x</h5>
                       </div>
                     </div>
                   </div>
 
                   <div class="flex justify-end mt-6">
                     <button type="submit"
-                      class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-azulSecundario rounded-md hover:bg-white hover:text-azulPrimario focus:outline-none focus:bg-gray-600">Agregar Maquina</button>
+                      class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-azulSecundario rounded-md hover:bg-white hover:text-azulPrimario focus:outline-none focus:bg-gray-600">Agregar
+                      Maquina</button>
                   </div>
                 </form>
               </section>
@@ -283,8 +285,7 @@
                       <div class="flex flex-col w-full relative bottom-0">
                         <div
                           class="grid grid-cols-3 border-t divide-x text-[#007EA7]  bg-gray-50 dark:bg-transparent py-3">
-                          <a
-                            class=" cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
+                          <a class=" cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
                             routerLink="/actualizar/maquinaria/{{maquinas.idMaquina}}">
                             <div class="mr-2">
                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
@@ -296,8 +297,8 @@
                             </div>
                             Actualizar
                           </a>
-                          <a
-                            class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold" (click)="deleteMachine(maquinas.idMaquina)" data-id="{{ maquinas.idMaquina }}">
+                          <a class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
+                            (click)="deleteMachine(maquinas.idMaquina)" data-id="{{ maquinas.idMaquina }}">
                             <div class="mr-2">
                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
                                 fill="#007EA7">
@@ -308,8 +309,7 @@
                             </div>
                             Eliminar
                           </a>
-                          <a
-                            class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
+                          <a class="cursor-pointer uppercase text-xs flex flex-row items-center justify-center font-semibold"
                             routerLink="/detalles/maquinaria/{{maquinas.idMaquina}}">
                             <div class="mr-2">
                               <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px"
@@ -337,4 +337,3 @@
     </div>
   </div>
 </body>
-
