@@ -8,7 +8,7 @@ import { url } from './api-url';
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = url + '/login'
+  private apiUrl = url + 'login'
 
   constructor(private http: HttpClient) { }
 

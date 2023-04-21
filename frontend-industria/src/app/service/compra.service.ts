@@ -9,7 +9,7 @@ import { url } from './api-url';
 })
 export class CompraService {
 
-  private apiUrl = url + '/purchase'
+  private apiUrl = url + 'purchase'
 
   constructor(private http: HttpClient) { }
 

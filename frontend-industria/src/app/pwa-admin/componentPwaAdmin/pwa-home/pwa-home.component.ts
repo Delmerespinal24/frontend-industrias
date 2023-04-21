@@ -88,8 +88,8 @@ export class PwaHomeComponent {
     paisMaquina: new FormControl('', [Validators.required]),
     marcaMaquina: new FormControl('', [Validators.required]),
     imagen1Maquina: new FormControl('', [Validators.required]),
-    imagen2Maquina: new FormControl('1'),
-    imagen3Maquina: new FormControl('2'),
+    imagen2Maquina: new FormControl(''),
+    imagen3Maquina: new FormControl(''),
   });
 
   get nombreMaquina(): FormControl {
@@ -175,9 +175,9 @@ export class PwaHomeComponent {
         existencia: parseInt('' + this.existenciaMaquina.value),
         pais: '' + this.paisMaquina.value,
         marca: '' + this.marcaMaquina.value,
-        image_1: '1',
-        image_2: '2',
-        image_3: '3',
+        image_1: '',
+        image_2: '',
+        image_3: '',
       };
       console.log('new: ', newAgregarMaquinaria);
 
@@ -192,13 +192,12 @@ export class PwaHomeComponent {
           alert('Maquinaria agregada');
 
           //Recorre el arreglo de archivos
-          this.archivosNew.forEach((archivo: any) => {
+          this.archivosNew.forEach((archivo: any, index:number) => {
             const formularioDeDatos = new FormData();
             formularioDeDatos.append('image', archivo);
-            console.log(archivo);
 
             //Sube archivo uno por uno
-            this.imagenService.maquinariaImagen(formularioDeDatos, '' + info.idMaquina)
+            this.imagenService.maquinariaImagen(formularioDeDatos, info.idMaquina + "-image_" + (index+1) )
               .subscribe((res) => {
                 console.log('Respuesta ', res);
               })

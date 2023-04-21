@@ -20,7 +20,7 @@ export class TokenClientService {
 
   decodedToken(token: any): Observable<any> {
     return this.http.post<any>(
-      url + '/userData',
+      url + 'userData',
       token
     );
   }

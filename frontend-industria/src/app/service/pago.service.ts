@@ -9,7 +9,7 @@ import { url } from './api-url';
 })
 export class PagoService {
 
-  private apiUrl = url + '/paymentPlan'
+  private apiUrl = url + 'paymentPlan'
 
   constructor(private http: HttpClient) { }
 

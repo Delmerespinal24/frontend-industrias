@@ -7,7 +7,7 @@ import { url } from './api-url';
   providedIn: 'root'
 })
 export class ImagenService {
-  private apiUrl = url + '/product/postImage/'
+  private apiUrl = url + 'product/postImage/'
 
   constructor(private http: HttpClient) { }
 

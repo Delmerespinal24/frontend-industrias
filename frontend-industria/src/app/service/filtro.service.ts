@@ -8,7 +8,7 @@ import { url } from './api-url';
   providedIn: 'root'
 })
 export class FiltroService {
-  private apiUrl = url + '/filter'
+  private apiUrl = url + 'filter'
 
   constructor(private http: HttpClient) { }
 
