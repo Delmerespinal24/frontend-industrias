@@ -114,7 +114,7 @@
         
                 <div  class="gallery" >
                     <div class="content" *ngFor="let item of listaMaquinas" >
-                        <img src="https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
+                        <img [src]="cargarImagen(item)"
                                     alt="image"/>
                         <table style="width: 100%">
                             <tr >

@@ -9,11 +9,11 @@ import { url } from './api-url';
 })
 export class CrudMaquinaService {
 
-  private apiUrlAgregarMaquina = url + '/machinery/add'
-  private apiUrlObtenerMaquina = url + '/machinery'
-  private apiUrlEliminarMaquina = url + '/machinery/delete'
-  private apiUrlObtenerMaquinaId = url + '/machinery/machine'
-  private apiUrlActualizarMaquina = url + '/machinery/edit'
+  private apiUrlAgregarMaquina = url + 'machinery/add'
+  private apiUrlObtenerMaquina = url + 'machinery'
+  private apiUrlEliminarMaquina = url + 'machinery/delete'
+  private apiUrlObtenerMaquinaId = url + 'machinery/machine'
+  private apiUrlActualizarMaquina = url + 'machinery/edit'
 
   constructor(private http: HttpClient) { }
 

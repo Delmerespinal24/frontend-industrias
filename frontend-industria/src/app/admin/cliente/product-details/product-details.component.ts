@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; 
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { url } from 'src/app/service/api-url';
 
 @Component({
   selector: 'app-product-details',
@@ -48,7 +48,38 @@ export class ProductDetailsComponent {
   }
 
   changeImage(index: number) {
-    this.currentImage = this.images[index];
+    if(index == 0){
+      if(this.machine[0].image_1 != "" && this.machine[0].image_1 != undefined){
+      
+        this.currentImage = url + this.machine[0].image_1
+  
+      }else{
+        
+        this.currentImage = this.images[index];
+      }
+    }else if (index == 1){
+      if(this.machine[0].image_1 != "" && this.machine[0].image_1 != undefined){
+      
+        this.currentImage = url + this.machine[0].image_2
+  
+      }else{
+        
+        this.currentImage = this.images[index];
+      }
+
+      
+    }else if (index == 2){
+      if(this.machine[0].image_1 != "" && this.machine[0].image_1 != undefined){
+      
+        this.currentImage = url + this.machine[0].image_3
+  
+      }else{
+        
+        this.currentImage = this.images[index];
+      }
+
+    }
+    
   }
 
   pagoForm=new FormGroup({

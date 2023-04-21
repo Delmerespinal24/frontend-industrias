@@ -7,6 +7,7 @@ import { Token } from 'src/app/interfaces/token';
 import { TokenClientService } from 'src/app/service/tokenClient.service';
 import { Filtro } from 'src/app/interfaces/filtro';
 import { FiltroService } from 'src/app/service/filtro.service';
+import { url } from 'src/app/service/api-url';
 
 @Component({
   selector: 'app-products',
@@ -55,6 +56,22 @@ export class ProductsComponent {
 
   ngOnInit(): void {
     this.cargarMaquinas();
+  }
+
+  cargarImagen(maquina:any){
+    let ruta:string;
+    
+
+    if(maquina.image_1 != "" && maquina.image_1 != undefined){
+      
+      ruta = url + maquina.image_1
+
+    }else{
+      
+      ruta = "https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
+    }
+
+    return ruta
   }
 
   toggleDropdown() {

@@ -7,7 +7,7 @@ import { url } from './api-url';
   providedIn: 'root'
 })
 export class AdministradorService {
-  private apiUrl = url + '/signupAdmin'
+  private apiUrl = url + 'signupAdmin'
 
   constructor(private http: HttpClient) { }
 
