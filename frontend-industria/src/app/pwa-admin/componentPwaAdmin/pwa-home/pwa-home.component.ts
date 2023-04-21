@@ -4,7 +4,6 @@ import { Router, RouterLink } from '@angular/router';
 import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/info-maquina';
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { TokenService } from 'src/app/service/token.service';
-import { ImagenService } from 'src/app/service/imagen.service';
 
 @Component({
   selector: 'app-pwa-home',
@@ -18,28 +17,20 @@ export class PwaHomeComponent {
 
   machines!: InfoMaquina2[];
   machinesResponse!: MachinesResponse;
-  maquina: any;
-
-  archivosNew: any = []; //Sera de tipo array
-  srcArrayNew: any = [];
+  maquina:any;
 
   constructor(
     private nuevaMaquina: CrudMaquinaService,
     private router: Router,
-    private tokenService: TokenService,
-    private imagenService: ImagenService
-  ) { }
+    private tokenService: TokenService
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
   cargarMaquinas() {
     this.nuevaMaquina.getMachinery().subscribe((response) => {
       this.machinesResponse = response;
       console.log(this.machinesResponse); // log the machinery data to the console
     });
-
-    this.srcArrayNew.length = 0;
-    this.archivosNew.length = 0;
-    this.agregarMaquinariaForm.reset();
   }
 
   deleteMachine(idMaquina: number) {
@@ -57,7 +48,7 @@ export class PwaHomeComponent {
       }
     );
   }
-
+  
 
   openSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
@@ -88,8 +79,8 @@ export class PwaHomeComponent {
     paisMaquina: new FormControl('', [Validators.required]),
     marcaMaquina: new FormControl('', [Validators.required]),
     imagen1Maquina: new FormControl('', [Validators.required]),
-    imagen2Maquina: new FormControl(''),
-    imagen3Maquina: new FormControl(''),
+    imagen2Maquina: new FormControl('1'),
+    imagen3Maquina: new FormControl('2'),
   });
 
   get nombreMaquina(): FormControl {
@@ -123,111 +114,46 @@ export class PwaHomeComponent {
     return this.agregarMaquinariaForm.get('imagen1Maquina') as FormControl;
   }
 
-  capturarFileNew(event: any) {
-    console.log('este corresponde a nuevo');
-
-    if (event.target.files.length > 0) {
-      if (event.target.files.length <= 10) {
-        let files = event.target.files;
-
-        let file;
-        for (let i = 0; i < files.length; i++) {
-          if (this.archivosNew.length < 10) {
-            file = files[i];
-            this.archivosNew.push(file);
-            const reader = new FileReader();
-            reader.onload = (file) => {
-              this.srcArrayNew.push({
-                img: reader.result,
-                id: this.srcArrayNew.length == 0 ? 0 : this.srcArrayNew.length,
-              });
-            };
-            reader.readAsDataURL(file);
-          } else {
-            window.alert('No mas de 3 imagenes');
-          }
-        }
-      } else {
-        window.alert('No mas de 3 imagenes');
-      }
-    }
-  }
-  deleteFileNew(id: number) {
-    this.srcArrayNew.splice(id, 1);
-    this.archivosNew.splice(id, 1);
-
-    for (let i = 0; i < this.srcArrayNew.length; i++) {
-      this.srcArrayNew[i].id = i;
-    }
-  }
-
   agregarMaquinaria() {
+    console.log('info: ', this.agregarMaquinariaForm);
 
-    if (this.srcArrayNew.length >= 1) {
+    let newAgregarMaquinaria: InfoMaquina = {
+      nombre: '' + this.nombreMaquina.value,
+      descripcion: '' + this.descripcionMaquina.value,
+      TipoMaquina: '' + this.tipoMaquina.value,
+      precio: parseInt('' + this.precioMaquina.value),
+      existencia: parseInt('' + this.existenciaMaquina.value),
+      pais: '' + this.paisMaquina.value,
+      marca: '' + this.marcaMaquina.value,
+      image_1: '' + this.imagen1Maquina.value,
+      image_2: '2',
+      image_3: '3',
+    };
 
-      console.log('info: ', this.agregarMaquinariaForm);
+    console.log('new: ', newAgregarMaquinaria);
 
-      let newAgregarMaquinaria: InfoMaquina = {
-        nombre: '' + this.nombreMaquina.value,
-        descripcion: '' + this.descripcionMaquina.value,
-        TipoMaquina: '' + this.tipoMaquina.value,
-        precio: parseInt('' + this.precioMaquina.value),
-        existencia: parseInt('' + this.existenciaMaquina.value),
-        pais: '' + this.paisMaquina.value,
-        marca: '' + this.marcaMaquina.value,
-        image_1: '',
-        image_2: '',
-        image_3: '',
-      };
-      console.log('new: ', newAgregarMaquinaria);
+    this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
+      let info: BookInfo = <any>res;
 
+      console.log('message:', info.message);
+      console.log('status:', info.status);
 
-      this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
-        let info: BookInfo = <any>res;
-
-        console.log('message:', info.message);
-        console.log('status:', info.status);
-
-        if (info.status == 200) {
-          alert('Maquinaria agregada');
-
-          //Recorre el arreglo de archivos
-          this.archivosNew.forEach((archivo: any, index:number) => {
-            const formularioDeDatos = new FormData();
-            formularioDeDatos.append('image', archivo);
-
-            //Sube archivo uno por uno
-            this.imagenService.maquinariaImagen(formularioDeDatos, info.idMaquina + "-image_" + (index+1) )
-              .subscribe((res) => {
-                console.log('Respuesta ', res);
-              })
-          });
-
-          this.archivosNew.length = 0;
-          this.srcArrayNew.length = 0;
-          alert('Producto cargado exitosamente')
-
-          this.agregarMaquinariaForm.reset();
-        } else if (info.status == 400) {
-          alert('error');
-        } else if (info.status == 401) {
-          alert('error');
-        } else if (info.status == 402) {
-          alert('error');
-        } else {
-          alert('Ha ocurrido un problema.');
-        }
-      });
-
-      //* Dentro de agregar maquina recibe id de la maquina
-
-    } else {
-      alert('Debes cargar al menos una imagen');
-    }
-
+      if (info.status == 200) {
+        alert('Maquinaria agregada');
+        this.agregarMaquinariaForm.reset();
+      } else if (info.status == 400) {
+        alert('error');
+      } else if (info.status == 401) {
+        alert('error');
+      } else if (info.status == 402) {
+        alert('error');
+      } else {
+        alert('Ha ocurrido un problema.');
+      }
+    });
   }
 
-  logout() {
+  logout(){
     this.tokenService.RemoveToken();
     this.router.navigate(['loginPWA']);
   }
@@ -236,5 +162,5 @@ export class PwaHomeComponent {
 interface BookInfo {
   status: number;
   message: string;
-  idMaquina: number;
+  data: InfoMaquina[];
 }

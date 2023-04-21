@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Login } from 'src/app/interfaces/login';
-import { TokenClientService } from 'src/app/service/tokenClient.service';
 
 @Component({
   selector: 'app-login-cliente',
@@ -13,17 +12,10 @@ import { TokenClientService } from 'src/app/service/tokenClient.service';
 })
 export class LoginClienteComponent {
   constructor(
-    private loginService:LoginService, private router:Router, private TokenClientService: TokenClientService,) {
-
-      let token = { token: this.TokenClientService.getToken() };
-
-      if (token.token) {
-        this.router.navigate(['machinery']);
-      }
-
+    
+    private loginService:LoginService, private router:Router) {
 
   }
-
 
   loginForm=new FormGroup({
     correo: new FormControl('', [Validators.required]),
@@ -69,7 +61,7 @@ export class LoginClienteComponent {
               alert("Login Correcto");
               //alert(localStorage.getItem('token-festival'));
               
-              this.router.navigate(['machinery']);
+              this.router.navigate(['landingpage']);
               //this.router.navigate(['']);
 
             }

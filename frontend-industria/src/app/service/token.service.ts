@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { url } from './api-url';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +19,8 @@ export class TokenService {
 
   decodedToken(token: any): Observable<any> {
     return this.http.post<any>(
-    
-      url + 'userData',
 
+      'https://44.207.27.36/userData',
       token
 
       // 'http://localhost:4000/userData',
