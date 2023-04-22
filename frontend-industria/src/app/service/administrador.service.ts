@@ -8,8 +8,6 @@ import { url } from './api-url';
 })
 export class AdministradorService {
 
-  // private apiUrl = 'https://44.207.27.36/signupAdmin'
-
   private apiUrl = url + 'signupAdmin'
 
   constructor(private http: HttpClient) { }

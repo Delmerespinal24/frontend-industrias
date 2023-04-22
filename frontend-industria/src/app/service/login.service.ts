@@ -9,8 +9,6 @@ import { url } from './api-url';
 })
 export class LoginService {
 
-  private apiUrl = 'https://44.207.27.36/login'
-
   private apiUrl = url + 'login'
 
   constructor(private http: HttpClient) { }
