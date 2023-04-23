@@ -235,6 +235,7 @@ export class PwaHomeComponent {
 
   cargarImagen(maquina:any){
     let ruta:string;
+    console.log(maquina)
     
     if(maquina.image_1 != "" && maquina.image_1 != undefined){
       

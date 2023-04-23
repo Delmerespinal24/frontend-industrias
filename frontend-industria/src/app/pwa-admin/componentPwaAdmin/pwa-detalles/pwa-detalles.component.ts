@@ -11,7 +11,7 @@ import { url } from 'src/app/service/api-url';
 export class PwaDetallesComponent {
   machine: any[] = []; // asegurandonos de que sea un arreglo
   images: string[] = ['https://img.interempresas.net/fotos/1238989.jpeg', 'https://www.maquinariacolas.com/wp-content/uploads/2019/07/Centro-Mazak-VTC-usado.jpg?v=1591031640', 'https://www.dupuis-mecanique.com/photos/vtc200b.jpg'];
-  currentImage: string = url + this.machine[0].image_1;
+  currentImage!: string;
   detallesId!: string | null;
 
   constructor(private activatedRoute: ActivatedRoute, private detalleMaquina: CrudMaquinaService) {}
@@ -30,7 +30,7 @@ export class PwaDetallesComponent {
       }
     );
     console.log('id: ', this.detallesId)
-    this.changeImage(1)
+    this.currentImage =  url + this.machine[0].image_1
   }
 
   changeImage(index: number) {
