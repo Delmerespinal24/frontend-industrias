@@ -112,6 +112,13 @@ export class ProductsComponent {
     }
   }
 
+  name():string{
+    if(this.infoToken){
+      return this.infoToken.user.nombreUsuario
+    }
+    return ""
+  }
+
   agregarMaquinariaForm = new FormGroup({
     nombreMaquina: new FormControl('', [Validators.required]),
     descripcionMaquina: new FormControl('', [Validators.required]),

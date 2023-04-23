@@ -38,7 +38,7 @@
                         </li>
                         <li class="flex items-center py-3">
                             <span>Miembro desde</span>
-                            <span class="ml-auto">{{infoToken?.data?.user?.fechaCreacion}}</span>
+                            <span class="ml-auto">{{formatearFecha(infoToken?.data?.user?.fechaCreacion)}}</span>
                         </li>
                     </ul>
                 </div>
@@ -123,7 +123,7 @@
                             </div>
                             <div class="grid md:grid-cols-2 grid-cols-1 bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Cumpleaños</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken?.data?.user?.fechaNacimiento}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{formatearFecha(infoToken?.data?.user?.fechaNacimiento)}}</div>
                             </div>
                         </div>
                         <div class="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
@@ -147,8 +147,9 @@
                             </div>
                             <div class="grid md:grid-cols-2 grid-cols-1  bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-1 divide-x rounded shadow-sm">
                                 <div class="px-4 py-2 font-semibold text-base md:text-base">Fecha de Finalizacion</div>
-                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{infoToken?.data?.plan?.fechaFin}}</div>
+                                <div class="px-4 py-2 text-azulPrimario md:text-base text-base">{{formatearFecha(infoToken?.data?.plan?.fechaFin)}}</div>
                             </div>
+                            <button class="bg-oscuro hover:bg-azulTerciario text-white font-bold py-2 px-4 rounded w-max mx-auto mt-10 " [routerLink]="['/planes']">Ver planes</button>
                         </div>
                     </div>
                 </div>

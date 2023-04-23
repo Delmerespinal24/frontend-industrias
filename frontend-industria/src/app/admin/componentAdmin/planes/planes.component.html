@@ -1,61 +1,65 @@
 <app-navbar></app-navbar>
-<section
-   class="
+<section class="
    bg-gradient-to-b from-oscuro to-azulSecundario
    pt-5
    pb-12
    px-12
-   "
-   >
-<div class="flex flex-wrap">
-   <div class="w-full">
-     <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row gap-2">
-       <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-         <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(1)" [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 1, 'text-white bg-pink-600 border border-white': openTab === 1}">
- <i class=" text-base mr-1"></i> Planes
-         </a>
-       </li>
-       <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-         <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(2)" [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
- <i class=" text-base mr-1"></i> Pagos
-         </a>
-       </li>
-       <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
-         <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal" (click)="toggleTabs(3)" [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 3, 'text-white bg-pink-600': openTab === 3}">
-     <i class=" text-base mr-1"></i> Confirmacion
-         </a>
-       </li>
-     </ul>
-     <div class="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 shadow-lg rounded border border-white">
-       <div class="px-4 py-5 flex-auto">
-         <div class="tab-content tab-space">
-           <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
-            <div class="container">
-               <div class="flex flex-wrap -mx-4">
-                  <div class="w-full px-4">
-                     <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
-                        <h2
-                           class="
+   ">
+   <div class="flex flex-wrap">
+      <div class="w-full">
+         <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row gap-2">
+            <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+               <button class="text-xs font-bold uppercase py-3 shadow-lg rounded block leading-normal"
+                  (click)="toggleTabs(1)" style="width:50vh;"
+                  [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 1, 'text-white bg-pink-600 border border-white': openTab === 1}">
+                  <i class=" text-base mr-1"></i> Planes
+               </button>
+            </li>
+            <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+               <button class="text-xs font-bold uppercase py-3 shadow-lg rounded block leading-normal"
+                  (click)="toggleTabs(2)" [disabled]="openTab<2" style="width:50vh;"
+                  [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 2, 'text-white bg-pink-600': openTab === 2}">
+                  <i class=" text-base mr-1"></i> Pagos
+               </button>
+            </li>
+            <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
+               <button class="text-xs font-bold uppercase py-3 shadow-lg rounded block leading-normal"
+                  (click)="toggleTabs(3)" [disabled]="openTab<3" style="width:50vh;"
+                  [ngClass]="{'text-azulPrimario bg-white hover:cursor-pointer': openTab !== 3, 'text-white bg-pink-600': openTab === 3}">
+                  <i class=" text-base mr-1"></i> Confirmacion
+               </button>
+            </li>
+         </ul>
+         <div
+            class="relative flex flex-col min-w-0 break-words bg-transparent w-full mb-6 shadow-lg rounded border border-white">
+            <div class="px-4 py-5 flex-auto">
+               <div class="tab-content tab-space">
+                  <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
+                     <div class="container">
+                        <div class="flex flex-wrap -mx-4">
+                           <div class="w-full px-4">
+                              <div class="text-center mx-auto mb-[60px] lg:mb-20 max-w-[510px]">
+                                 <h2 class="
                            font-bold
                            text-3xl
                            sm:text-4xl
                            md:text-[40px]
                            text-white
                            mb-4
-                           "
-                           >
-                           Nuestros Planes
-                        </h2>
-                        <p class="text-base text-white ">
-                         Con nuestra suscripción, nunca más tendrás que preocuparte por perder una oferta o quedarte sin acceso a contenido exclusivo. ¡Únete a nuestra comunidad de subscriptores y haz que tus planes sean siempre perfectos!
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="flex flex-wrap justify-center -mx-4">
-                  <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                     <div
-                        class="
+                           ">
+                                    Nuestros Planes
+                                 </h2>
+                                 <p class="text-base text-white ">
+                                    Con nuestra suscripción, nunca más tendrás que preocuparte por perder una oferta o
+                                    quedarte sin acceso a contenido exclusivo. ¡Únete a nuestra comunidad de
+                                    subscriptores y haz que tus planes sean siempre perfectos!
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="flex flex-wrap justify-center -mx-4">
+                           <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                              <div class="
                         bg-white
                         rounded-xl
                         relative
@@ -71,50 +75,45 @@
                         mb-10
                         shadow-inner
                         shadow-azulTerciario
-                        "
-                        >
-                        <span class="text-azulTerciario font-semibold text-lg block mb-4">
-                        Basico
-                        </span>
-                        <h2 class="font-bold text-dark mb-5 text-[42px]">
-                           $59
-                           <span class="text-base text-body-color font-medium">
-                           / mes
-                           </span>
-                        </h2>
-                        <p
-                           class="
+                        ">
+                                 <span class="text-azulTerciario font-semibold text-lg block mb-4">
+                                    Basico
+                                 </span>
+                                 <h2 class="font-bold text-dark mb-5 text-[42px]">
+                                    $59
+                                    <span class="text-base text-body-color font-medium">
+                                       / mes
+                                    </span>
+                                 </h2>
+                                 <p class="
                            text-base text-body-color
                            pb-8
                            mb-8
                            border-b border-[#F2F2F2]
-                           "
-                           >
-                           Perfecto e ideal para usar en un sitio web personal o en un proyecto de cliente.
-                        </p>
-                        <div class="mb-7">
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             1 Usuario
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Todos los componentes de interfaz de usuario (UI)
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Acceso de por vida
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Actualizaciones gratuitas
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Uso en 1 (un) proyecto
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Soporte por 3 meses
-                           </p>
-                        </div>
-                        <a
-                           href="javascript:void(0)"
-                           class="
+                           ">
+                                    Perfecto e ideal para usar en un sitio web personal o en un proyecto de cliente.
+                                 </p>
+                                 <div class="mb-7">
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       1 Usuario
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Todos los componentes de interfaz de usuario (UI)
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Acceso de por vida
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Actualizaciones gratuitas
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Uso en 1 (un) proyecto
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Soporte por 3 meses
+                                    </p>
+                                 </div>
+                                 <a href="javascript:void(0)" class="
                            w-full
                            block
                            text-base
@@ -127,223 +126,215 @@
                            p-4
                            hover:text-white hover:bg-azulTerciario hover:border-primary
                            transition
-                           "
-                           (click)="plan(1)"
-                           >
-                        Elegir Basico
-                        </a>
-                        <div>
-                           <span class="absolute right-0 top-7 z-[-1]">
-           
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                     <div
-                        class="
-                        bg-white
-                        rounded-xl
-                        relative
-                        z-10
-                        overflow-hidden
-                        border border-primary border-opacity-20
-                        shadow-pricing
-                        py-10
-                        px-8
-                        sm:p-12
-                        lg:py-10 lg:px-6
-                        xl:p-12
-                        mb-10
-                        "
-                        >
-                        <span class="text-azulTerciario font-semibold text-lg block mb-4">
-                        Estandar
-                        </span>
-                        <h2 class="font-bold text-dark mb-5 text-[42px]">
-                           $199
-                           <span class="text-base text-body-color font-medium">
-                           / mes
-                           </span>
-                        </h2>
-                        <p
-                           class="
-                           text-base text-body-color
-                           pb-8
-                           mb-8
-                           border-b border-[#F2F2F2]
-                           "
-                           >
-                           Perfecto para usar en un sitio web comercial o en un proyecto de cliente.
-                        </p>
-                        <div class="mb-7">
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             5 Usuarios
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Todos los componentes de la interfaz de usuario (UI)
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Acceso de por vida
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Actualizaciones gratuitas
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Uso en 3 (tres) proyectos
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Soporte por 4 meses
-                           </p>
-                        </div>
-                        <a
-                           href="javascript:void(0)"
-                           class="
-                           w-full
-                           block
-                           text-base
-                           font-semibold
-                           text-white
-                           bg-azulPrimario
-                           border border-[#D4DEFF]
-                           rounded-md
-                           text-center
-                           p-4
-                           hover:text-white hover:bg-azulTerciario hover:border-primary
-                           transition
-                           "
-                           (click)="plan(2)"
-                           >
-                        Eligir Estandar
-                        </a>
-                        <div>
-                           <span class="absolute right-0 top-7 z-[-1]">
-                              
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="w-full md:w-1/2 lg:w-1/3 px-4">
-                     <div
-                        class="
-                        bg-white
-                        rounded-xl
-                        relative
-                        z-10
-                        overflow-hidden
-                        border border-primary border-opacity-20
-                        shadow-pricing
-                        py-10
-                        px-8
-                        sm:p-12
-                        lg:py-10 lg:px-6
-                        xl:p-12
-                        mb-10
-                        "
-                        >
-                        <span class="text-azulTerciario font-semibold text-lg block mb-4">
-                        Profesional
-                        </span>
-                        <h2 class="font-bold text-dark mb-5 text-[42px]">
-                           $256
-                           <span class="text-base text-body-color font-medium">
-                           / mes
-                           </span>
-                        </h2>
-                        <p
-                           class="
-                           text-base text-body-color
-                           pb-8
-                           mb-8
-                           border-b border-[#F2F2F2]
-                           "
-                           >
-                           Perfecto para usar en un sitio web profesional o en un proyecto de cliente.
-                        </p>
-                        <div class="mb-7">
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Usuarios ilimitados
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Todos los componentes de la interfaz de usuario
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Acceso de por vida
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Actualizaciones gratuitas
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Uso en proyectos ilimitados
-                           </p>
-                           <p class="text-base text-body-color leading-loose mb-1">
-                             Soporte de 12 meses
-                           </p>
-                        </div>
-                        <a
-                           href="javascript:void(0)"
-                           class="
-                           w-full
-                           block
-                           text-base
-                           font-semibold
-                           text-white
-                           bg-azulPrimario
-                           border border-[#D4DEFF]
-                           rounded-md
-                           text-center
-                           p-4
-                           hover:text-white hover:bg-azulTerciario hover:border-primary
-                           transition
-                           "
-                           (click)="plan(3)"
-                           >
-                        Elegir Profesional
-                        </a>
-                        <div>
-                           <span class="absolute right-0 top-7 z-[-1]">
-                              
-                           </span>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-           </div>
-           <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
-             <p>
-<!-- component -->
+                           " (click)="plan(1)">
+                                    Elegir Basico
+                                 </a>
+                                 <div>
+                                    <span class="absolute right-0 top-7 z-[-1]">
 
-        <div class="flex flex-col justify-center items-center h-[100vh]">
-            <div class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
-                <div class="mt-2 mb-8 w-full">
-                    <h4 class="px-2 text-xl font-bold text-gray-900">
-                    Proceso de transacción
-                    </h4>
-                    <p class="mt-2 px-2 text-base text-gray-600">
-                     Para poder completar la compra es necesario contar con los datos de la tarjeta de crédito o débito que se utilizará para realizar el pago. Estos datos son esenciales para poder llevar a cabo la transacción de forma segura y confiable.
-                    </p>
-                </div> 
-                
-                  <form [formGroup]="pagoForm" (ngSubmit)="pago()">
-                     <div class="grid md:grid-cols-2 grid-cols-1 gap-4 px-2 w-full">
-                     <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
-                        <p class="text-sm text-gray-600">Numero de Tarjeta</p>
-                        <input type="" id="numeroTarjeta" formControlName="numeroTarjeta" class="text-base font-sm text-black shadow-inner bg-hueso w-44 ">
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                              <div class="
+                        bg-white
+                        rounded-xl
+                        relative
+                        z-10
+                        overflow-hidden
+                        border border-primary border-opacity-20
+                        shadow-pricing
+                        py-10
+                        px-8
+                        sm:p-12
+                        lg:py-10 lg:px-6
+                        xl:p-12
+                        mb-10
+                        ">
+                                 <span class="text-azulTerciario font-semibold text-lg block mb-4">
+                                    Estandar
+                                 </span>
+                                 <h2 class="font-bold text-dark mb-5 text-[42px]">
+                                    $199
+                                    <span class="text-base text-body-color font-medium">
+                                       / mes
+                                    </span>
+                                 </h2>
+                                 <p class="
+                           text-base text-body-color
+                           pb-8
+                           mb-8
+                           border-b border-[#F2F2F2]
+                           ">
+                                    Perfecto para usar en un sitio web comercial o en un proyecto de cliente.
+                                 </p>
+                                 <div class="mb-7">
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       5 Usuarios
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Todos los componentes de la interfaz de usuario (UI)
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Acceso de por vida
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Actualizaciones gratuitas
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Uso en 3 (tres) proyectos
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Soporte por 4 meses
+                                    </p>
+                                 </div>
+                                 <a href="javascript:void(0)" class="
+                           w-full
+                           block
+                           text-base
+                           font-semibold
+                           text-white
+                           bg-azulPrimario
+                           border border-[#D4DEFF]
+                           rounded-md
+                           text-center
+                           p-4
+                           hover:text-white hover:bg-azulTerciario hover:border-primary
+                           transition
+                           " (click)="plan(2)">
+                                    Eligir Estandar
+                                 </a>
+                                 <div>
+                                    <span class="absolute right-0 top-7 z-[-1]">
+
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="w-full md:w-1/2 lg:w-1/3 px-4">
+                              <div class="
+                        bg-white
+                        rounded-xl
+                        relative
+                        z-10
+                        overflow-hidden
+                        border border-primary border-opacity-20
+                        shadow-pricing
+                        py-10
+                        px-8
+                        sm:p-12
+                        lg:py-10 lg:px-6
+                        xl:p-12
+                        mb-10
+                        ">
+                                 <span class="text-azulTerciario font-semibold text-lg block mb-4">
+                                    Profesional
+                                 </span>
+                                 <h2 class="font-bold text-dark mb-5 text-[42px]">
+                                    $256
+                                    <span class="text-base text-body-color font-medium">
+                                       / mes
+                                    </span>
+                                 </h2>
+                                 <p class="
+                           text-base text-body-color
+                           pb-8
+                           mb-8
+                           border-b border-[#F2F2F2]
+                           ">
+                                    Perfecto para usar en un sitio web profesional o en un proyecto de cliente.
+                                 </p>
+                                 <div class="mb-7">
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Usuarios ilimitados
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Todos los componentes de la interfaz de usuario
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Acceso de por vida
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Actualizaciones gratuitas
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Uso en proyectos ilimitados
+                                    </p>
+                                    <p class="text-base text-body-color leading-loose mb-1">
+                                       Soporte de 12 meses
+                                    </p>
+                                 </div>
+                                 <a href="javascript:void(0)" class="
+                           w-full
+                           block
+                           text-base
+                           font-semibold
+                           text-white
+                           bg-azulPrimario
+                           border border-[#D4DEFF]
+                           rounded-md
+                           text-center
+                           p-4
+                           hover:text-white hover:bg-azulTerciario hover:border-primary
+                           transition
+                           " (click)="plan(3)">
+                                    Elegir Profesional
+                                 </a>
+                                 <div>
+                                    <span class="absolute right-0 top-7 z-[-1]">
+
+                                    </span>
+                                 </div>
+                              </div>
+                           </div>
                         </div>
-    
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
-                         <p class="text-sm text-gray-600">Fecha de Vencimiento</p>
-                         <input type="date" id="fechaVencimiento" formControlName="fechaVencimiento" class="text-base font-sm text-black shadow-inner bg-hueso w-44">
-                        </div>
-    
-                        <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
-                         <p class="text-sm text-gray-600">Codigo CVV</p>
-                         <input type="" id="codigoCVV" formControlName="codigoCVV" class="text-base font-sm text-black shadow-inner bg-hueso w-44">
-                        </div>
-    
-                        <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-black">
-                         <button class="
+                     </div>
+                  </div>
+                  <div [ngClass]="{'hidden': openTab !== 2, 'block': openTab === 2}">
+                     <p>
+                        <!-- component -->
+
+                     <div class="flex flex-col justify-center items-center h-[100vh]">
+                        <div
+                           class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                           <div class="mt-2 mb-8 w-full">
+                              <h4 class="px-2 text-xl font-bold text-gray-900">
+                                 Proceso de transacción
+                              </h4>
+                              <p class="mt-2 px-2 text-base text-gray-600">
+                                 Para poder completar la compra es necesario contar con los datos de la tarjeta de
+                                 crédito o débito que se utilizará para realizar el pago. Estos datos son esenciales
+                                 para poder llevar a cabo la transacción de forma segura y confiable.
+                              </p>
+                           </div>
+
+                           <form [formGroup]="pagoForm" (ngSubmit)="pago()">
+                              <div class="grid md:grid-cols-2 grid-cols-1 gap-4 px-2 w-full">
+                                 <div
+                                    class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
+                                    <p class="text-sm text-gray-600">Número de tarjeta</p>
+                                    <input type="" maxlength="16" id="numeroTarjeta" formControlName="numeroTarjeta"
+                                       class="text-base font-sm text-black shadow-inner bg-hueso w-44 ">
+                                 </div>
+
+                                 <div
+                                    class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
+                                    <p class="text-sm text-gray-600">Fecha de vencimiento</p>
+                                    <input type="" placeholder="MM/AA" maxlength="5" id="fechaVencimiento" formControlName="fechaVencimiento"
+                                       class="text-base font-sm text-black shadow-inner bg-hueso w-44">
+                                 </div>
+
+                                 <div
+                                    class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500">
+                                    <p class="text-sm text-gray-600">Código CVV</p>
+                                    <input type="" maxlength="3" id="codigoCVV" formControlName="codigoCVV"
+                                       class="text-base font-sm text-black shadow-inner bg-hueso w-44">
+                                 </div>
+
+                                 <div
+                                    class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-black">
+                                    <button class="
                          w-full
                          block
                          text-base
@@ -357,83 +348,92 @@
                          hover:text-white hover:bg-azulTerciario hover:border-primary
                          transition
                          ">Pagar</button>
+                                 </div>
+                              </div>
+                           </form>
+
+
                         </div>
                      </div>
-                  </form>
-                   
+                  </div>
+                  <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
+                     <!-- component -->
 
-            </div>  
-        </div>
-           </div>
-           <div [ngClass]="{'hidden': openTab !== 3, 'block': openTab === 3}">
-<!-- component -->
+                     <div class="flex flex-col justify-center items-center h-[100vh]">
+                        <div
+                           class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                           <div class="mt-2 mb-8 w-full">
+                              <h4 class="px-2 text-xl font-bold text-azulPrimario">
+                                 Confirmacion de Informacion
+                              </h4>
+                              <p class="mt-2 px-2 text-base text-gray-600">
+                                 Por favor verifique que los datos son correctos.
+                              </p>
+                           </div>
+                           <div class="grid grid-cols-2 gap-4 px-2 w-full " *ngIf="infotarjetaUsuario">
+                              <div
+                                 class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">Numero de Tarjeta</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    {{infotarjetaUsuario.numeroTarjeta}}
+                                 </p>
+                              </div>
 
-        <div class="flex flex-col justify-center items-center h-[100vh]">
-            <div class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
-                <div class="mt-2 mb-8 w-full">
-                    <h4 class="px-2 text-xl font-bold text-azulPrimario">
-                    Confirmacion de Informacion
-                    </h4>
-                    <p class="mt-2 px-2 text-base text-gray-600">
-                     Por favor verifique que los datos son correctos.
-                    </p>
-                </div> 
-                <div class="grid grid-cols-2 gap-4 px-2 w-full " *ngIf="infotarjetaUsuario">
-                    <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">Numero de Tarjeta</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                        {{infotarjetaUsuario.numeroTarjeta}}
-                    </p>
-                    </div>
+                              <div
+                                 class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">Fecha Venvimiento</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    {{infotarjetaUsuario.fechaVencimiento}}
+                                 </p>
+                              </div>
 
-                    <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">Fecha Venvimiento</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                     {{infotarjetaUsuario.fechaVencimiento}}
-                    </p>
-                    </div>
+                              <div
+                                 class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">CodigoCVV</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    {{infotarjetaUsuario.codigoCVV}}
+                                 </p>
+                              </div>
 
-                    <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">CodigoCVV</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                     {{infotarjetaUsuario.codigoCVV}}
-                    </p>
-                    </div>
+                              <div
+                                 class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">Tipo De Plan</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    {{nombrePlan}}
+                                 </p>
+                              </div>
 
-                    <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">Tipo De Plan</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                        {{nombrePlan}}
-                    </p>
-                    </div>
+                              <div
+                                 class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">Fecha de vencimiento de Plan</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    {{finPlan}}
+                                 </p>
+                              </div>
 
-                    <div class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">Fecha de vencimiento de Plan</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                        {{finPlan}}
-                    </p>
-                    </div>
+                              <div
+                                 class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                 <p class="text-sm text-gray-600">Precio</p>
+                                 <p class="text-base font-medium text-azulPrimario">
+                                    $ {{precioPlan}}
+                                 </p>
+                              </div>
+                           </div>
+                           <button
+                              class="bg-azulPrimario text-white py-2 px-4 my-10 rounded hover:bg-azulSecundario m-auto"
+                              (click)="confirmacionPago()">Confirmacion de Pago</button>
+                        </div>
+                     </div>
 
-                    <div class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
-                    <p class="text-sm text-gray-600">Precio</p>
-                    <p class="text-base font-medium text-azulPrimario">
-                        $ {{precioPlan}}
-                    </p>
-                    </div>
-                </div>
-                <button class="bg-azulPrimario text-white py-2 px-4 my-10 rounded hover:bg-azulSecundario m-auto" (click)="confirmacionPago()">Confirmacion de Pago</button>
-            </div>  
-        </div>
-
-           </div>
+                  </div>
+               </div>
+            </div>
          </div>
-       </div>
-     </div>
+      </div>
    </div>
- </div>
 
-<!-- ====== Pricing Section Start -->
+   <!-- ====== Pricing Section Start -->
 
-   
+
 </section>
 <!-- ====== Pricing Section End -->

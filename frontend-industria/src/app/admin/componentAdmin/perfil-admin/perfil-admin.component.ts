@@ -31,9 +31,12 @@ export class PerfilAdminComponent {
 
   }
 
-ngOnInit():void{
+  formatearFecha(fecha: string): string {
+    if(fecha){
+      return fecha.slice(0, 10);
 
-
-}
+    }
+    return ""
+  }
 
 }

@@ -21,7 +21,7 @@ export class CustomerPaymentComponent {
   public modal: boolean = false;
 
   constructor(private activatedRoute: ActivatedRoute, private detalleMaquina: CrudMaquinaService, private router: Router,
-     private TokenClientService: TokenClientService, private compraService: CompraService) { }
+    private TokenClientService: TokenClientService, private compraService: CompraService) { }
 
   ngOnInit(): void {
     this.detallesId = this.activatedRoute.snapshot.paramMap.get('id')!;
@@ -86,20 +86,26 @@ export class CustomerPaymentComponent {
           codigoCVV: parseInt('' + this.compraForm.get('codigoCVV')?.value),
         };
 
-        this.compraService.pagoTarjeta(tarjetaCompra).subscribe((res) => {
-          let info: BookInfo = <any>res;
+        if (tarjetaCompra.cantidadProducto < 1 || tarjetaCompra.cantidadProducto > this.machine[0].existencia) {
+          alert("Cantidad no valida")
+        } else {
+          if (this.validateCreditCard("" + tarjetaCompra.noTarjeta, tarjetaCompra.fechaVencimientoT, "" + tarjetaCompra.codigoCVV)) {
 
-          if(info.status == 200){
-            alert("¡Compra exitosa!")
-            this.router.navigate(['login-festival'])
+            this.compraService.pagoTarjeta(tarjetaCompra).subscribe((res) => {
+              let info: BookInfo = <any>res;
 
-          }else{
-            alert(info.message)
+              if (info.status == 200) {
+                alert("¡Compra exitosa!")
+                this.router.navigate(['login-festival'])
+
+              } else {
+                alert(info.message)
+
+              }
+            })
 
           }
-
-        })
-        
+        }
 
       },
       error: error => {
@@ -107,8 +113,47 @@ export class CustomerPaymentComponent {
       }
     });
 
+  }
 
+  validateCreditCard(cardNumber: string, expiry: string, cvv: string): boolean {
+    // Validar número de tarjeta
+    const cardNumberRegex = /^[0-9]{16}$/;
+    if (!cardNumberRegex.test(cardNumber)) {
+      alert("Número de tarjeta no valido")
+      return false;
+    }
 
+    // Validar fecha de expiración
+    const expiryRegex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+    if (!expiryRegex.test(expiry)) {
+      alert("Fecha de vencimiento no valida")
+      return false;
+    }
+
+    let exp = expiry.split("/")
+
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const lastTwoDigitsOfYear = currentYear.toString().slice(-2)
+    if (parseInt(exp[1]) < parseInt(lastTwoDigitsOfYear)) {
+      alert("La tarjeta ya expiro")
+      return false;
+    } else if (parseInt(exp[1]) == parseInt(lastTwoDigitsOfYear)) {
+      const currentMonth = currentDate.getMonth() + 1;
+      if (parseInt(exp[0]) <= currentMonth) {
+        alert("La tarjeta ya expiro")
+        return false;
+      }
+    }
+
+    // Validar CVV
+    const cvvRegex = /^[0-9]{3}$/;
+    if (!cvvRegex.test(cvv)) {
+      alert("Código CVV invalido")
+      return false;
+    }
+
+    return true;
   }
 
 }
