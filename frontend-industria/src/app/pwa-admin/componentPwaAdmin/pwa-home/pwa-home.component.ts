@@ -5,6 +5,7 @@ import { InfoMaquina, InfoMaquina2, MachinesResponse } from 'src/app/interfaces/
 import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { TokenService } from 'src/app/service/token.service';
 import { ImagenService } from 'src/app/service/imagen.service';
+import { url } from 'src/app/service/api-url';
 
 @Component({
   selector: 'app-pwa-home',
@@ -231,7 +232,24 @@ export class PwaHomeComponent {
     this.tokenService.RemoveToken();
     this.router.navigate(['loginPWA']);
   }
+
+  cargarImagen(maquina:any){
+    let ruta:string;
+    
+    if(maquina.image_1 != "" && maquina.image_1 != undefined){
+      
+      ruta = url + maquina.image_1
+  
+    }else{
+      
+      ruta = "https://cdn.tailgrids.com/2.0/image/application/images/cards/card-01/image-01.jpg"
+    }
+  
+    return ruta
+  }
+  
 }
+
 
 interface BookInfo {
   status: number;

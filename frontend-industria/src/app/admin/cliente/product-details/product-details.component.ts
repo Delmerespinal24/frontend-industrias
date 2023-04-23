@@ -13,7 +13,7 @@ export class ProductDetailsComponent {
 
   machine: any[] = []; // asegurandonos de que sea un arreglo
   images: string[] = ['https://img.interempresas.net/fotos/1238989.jpeg', 'https://www.maquinariacolas.com/wp-content/uploads/2019/07/Centro-Mazak-VTC-usado.jpg?v=1591031640', 'https://www.dupuis-mecanique.com/photos/vtc200b.jpg'];
-  currentImage: string = this.images[0];
+  currentImage: string = url + this.machine[0].image_1;
   detallesId!: string | null;
   public modal: boolean=false;
 
@@ -33,6 +33,7 @@ export class ProductDetailsComponent {
       }
     );
     console.log('id: ', this.detallesId)
+    this.changeImage(1)
   }
 
   get numeroTarjetaControl():FormControl{
