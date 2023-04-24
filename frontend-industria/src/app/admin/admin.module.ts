@@ -12,6 +12,7 @@ import { RegistroClienteComponent } from './cliente/registro-cliente/registro-cl
 import { ProductsComponent } from './cliente/products/products.component';
 import { ProductDetailsComponent } from './cliente/product-details/product-details.component';
 import { CustomerPaymentComponent } from './cliente/customer-payment/customer-payment.component';
+import { PaymentConfirmationComponent } from './cliente/payment-confirmation/payment-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CustomerPaymentComponent } from './cliente/customer-payment/customer-pa
     RegistroClienteComponent,
     ProductsComponent,
     ProductDetailsComponent,
-    CustomerPaymentComponent
+    CustomerPaymentComponent,
+    PaymentConfirmationComponent
   ],
   imports: [
     CommonModule,

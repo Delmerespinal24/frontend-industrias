@@ -68,7 +68,7 @@ export class CustomerPaymentComponent {
 
 
 
-  compra() {
+  confirmacion() {
     let token = { token: this.TokenClientService.getToken() };
 
 
@@ -86,23 +86,16 @@ export class CustomerPaymentComponent {
           codigoCVV: parseInt('' + this.compraForm.get('codigoCVV')?.value),
         };
 
+        let datos = tarjetaCompra.idUsuario + "," + tarjetaCompra.cantidadProducto + "," +
+          tarjetaCompra.noTarjeta + "," + tarjetaCompra.fechaVencimientoT + "," + tarjetaCompra.codigoCVV
+
         if (tarjetaCompra.cantidadProducto < 1 || tarjetaCompra.cantidadProducto > this.machine[0].existencia) {
           alert("Cantidad no valida")
         } else {
           if (this.validateCreditCard("" + tarjetaCompra.noTarjeta, tarjetaCompra.fechaVencimientoT, "" + tarjetaCompra.codigoCVV)) {
 
-            this.compraService.pagoTarjeta(tarjetaCompra).subscribe((res) => {
-              let info: BookInfo = <any>res;
-
-              if (info.status == 200) {
-                alert("¡Compra exitosa!")
-                this.router.navigate(['login-festival'])
-
-              } else {
-                alert(info.message)
-
-              }
-            })
+            localStorage.setItem("tarjeta",datos)
+            this.router.navigate(['machinery/detalles/payment/confirmation/'+tarjetaCompra.idMaquina])
 
           }
         }

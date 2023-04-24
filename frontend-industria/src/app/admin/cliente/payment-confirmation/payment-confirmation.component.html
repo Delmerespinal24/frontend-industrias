@@ -1,0 +1,128 @@
+<body>
+
+    <div class="py-6 w-screen h-screen">
+        <!-- Breadcrumbs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center space-x-2 text-black-400 text-sm">
+                <a href="/machinery" class="hover:underline hover:text-black-600">Productos</a>
+                <span>
+                    <svg class="h-5 w-5 leading-none text-black-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+                <a href="/machinery/detalles/{{detallesId}}" class="hover:underline hover:text-black-600">Detalles</a>
+                <span>
+                    <svg class="h-5 w-5 leading-none text-black-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+                <span>
+                    <a href="/machinery/detalles/payment/{{detallesId}}" class="hover:underline hover:text-black-600">Pago</a>
+                </span>
+                <span>
+                    <svg class="h-5 w-5 leading-none text-black-300" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </span>
+                <span>Confirmación</span>
+
+            </div>
+        </div>
+        <!-- ./ Breadcrumbs -->
+
+        <!-- component -->
+        <section class="overflow-hidden bg-transparent w-screen">
+            <div class="container md:px-5 px-0 py-10 mx-auto">
+                <div
+                    class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+
+                    <div
+                        class="relative flex flex-col items-center rounded-[20px] w-[700px] max-w-[95%] mx-auto bg-white bg-clip-border shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:text-white dark:!shadow-none p-3">
+                        <div class="mt-2 mb-8 w-full">
+                            <h4 class="px-2 text-xl font-bold text-azulPrimario">
+                                Confirmación de Información
+                            </h4>
+                            <p class="mt-2 px-2 text-base text-gray-600">
+                                Por favor verifique que los datos son correctos.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 px-2 w-full " *ngIf="tarjetaCompra && precios">
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Número de tarjeta</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{tarjetaCompra.noTarjeta}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Fecha de vencimiento</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{tarjetaCompra.fechaVencimientoT}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Código CVV</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{tarjetaCompra.codigoCVV}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Cantidad</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{tarjetaCompra.cantidadProducto}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Precio unitario</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{precios.precioUnitario}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Subtotal</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{precios.subTotal}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Impuesto</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{precios.impuesto}}
+                                </p>
+                            </div>
+
+                            <div
+                                class="flex flex-col items-start justify-center rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 ">
+                                <p class="text-sm text-gray-600">Total</p>
+                                <p class="text-base font-medium text-azulPrimario">
+                                    {{precios.total}}
+                                </p>
+                            </div>
+
+                        </div>
+                        <button
+                            class="bg-azulPrimario text-white py-2 px-4 my-10 rounded hover:bg-azulSecundario m-auto"
+                            (click)="compra()">Confirmación de pago
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
