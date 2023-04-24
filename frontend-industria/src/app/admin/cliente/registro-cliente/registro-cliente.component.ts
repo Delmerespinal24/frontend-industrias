@@ -127,7 +127,7 @@ export class RegistroClienteComponent {
                 //alert(localStorage.getItem('token'));
                 console.log('info token ', info.token)
                 //this.router.navigate(['']);
-                this.router.navigate(['landingpage']);
+                this.router.navigate(['login-festival']);
               } else if (info.status == 400) { // No existe el nombre de usuario
                 alert(info.message);
               }
