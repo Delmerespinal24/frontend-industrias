@@ -6,6 +6,8 @@ import { CrudMaquinaService } from 'src/app/service/crud-maquina.service';
 import { TokenService } from 'src/app/service/token.service';
 import { ImagenService } from 'src/app/service/imagen.service';
 import { url } from 'src/app/service/api-url';
+import { Token } from 'src/app/interfaces/token';
+import { ApiRestServiceService } from 'src/app/service/api-rest-service.service';
 
 @Component({
   selector: 'app-pwa-home',
@@ -13,6 +15,13 @@ import { url } from 'src/app/service/api-url';
   styleUrls: ['./pwa-home.component.css'],
 })
 export class PwaHomeComponent {
+
+  token!:Token;
+  infoToken:any;
+  fechaFin!: Date;
+  fechaActual:Date= new Date;
+  diasDisponiblesPlan:any;
+
   openTab = 1;
   seleccion = 0;
   sidebarOpen = true;
@@ -24,15 +33,74 @@ export class PwaHomeComponent {
   archivosNew: any = []; //Sera de tipo array
   srcArrayNew: any = [];
 
+  
+
   constructor(
     private nuevaMaquina: CrudMaquinaService,
     private router: Router,
     private tokenService: TokenService,
-    private imagenService: ImagenService
-  ) { }
+    private imagenService: ImagenService,
+    private apiService: ApiRestServiceService,
+  ) { 
+    
+    
+    this.token={"token":this.tokenService.getToken()}
 
-  ngOnInit(): void { }
+    this.tokenService.decodedToken(this.token).subscribe({
+      next: res=>{
+        this.infoToken=res;
+        const fechaFinS=this.infoToken.data.plan.fechaFin
+        const fechaFin2= fechaFinS.slice(0, 10);
+        this.fechaFin = new Date(fechaFin2);
+        console.log("info token ",this.token)
+
+        function getDayDiff(startDate: Date, endDate: Date): number {
+          const msInDay = 24 * 60 * 60 * 1000;
+          return Math.round(
+            Math.abs(endDate.getTime() - startDate.getTime()) / msInDay,
+          );
+        }
+
+        this.diasDisponiblesPlan = getDayDiff(
+          this.fechaActual,
+          this.fechaFin
+        )
+
+        // 
+        console.log("dias para el plan",
+          this.diasDisponiblesPlan
+        );
+        
+        // 
+        console.log(
+          getDayDiff(
+            new Date('2022-04-17'),
+            new Date('2022-05-17')
+          )
+        );
+
+
+        this.apiService.sendPushNot(this.diasDisponiblesPlan).subscribe({
+          next:res=>{
+            console.log(res);
+          }
+        })
+      },
+      error: error=>{
+        console.log(error);
+      }
+    });    
+  }
+
+  ngOnInit(): void { 
+
+  }
+
+
+
+
   cargarMaquinas() {
+    console.log("dias plan:",this.diasDisponiblesPlan)
     this.nuevaMaquina.getMachinery().subscribe((response) => {
       this.machinesResponse = response;
       console.log(this.machinesResponse); // log the machinery data to the console
@@ -164,8 +232,9 @@ export class PwaHomeComponent {
 
   agregarMaquinaria() {
 
-    if (this.srcArrayNew.length >= 1) {
+    
 
+    if (this.srcArrayNew.length >= 1) {
       console.log('info: ', this.agregarMaquinariaForm);
 
       let newAgregarMaquinaria: InfoMaquina = {
@@ -181,6 +250,8 @@ export class PwaHomeComponent {
         image_3: '',
       };
       console.log('new: ', newAgregarMaquinaria);
+
+
 
 
       this.nuevaMaquina.newMachine(newAgregarMaquinaria).subscribe((res) => {
@@ -248,6 +319,7 @@ export class PwaHomeComponent {
   
     return ruta
   }
+  
   
 }
 
