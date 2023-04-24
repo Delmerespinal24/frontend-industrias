@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiRestServiceService {
 
-  public urlPush = 'http://localhost:4000/save'
-  public urlPushNot = 'http://localhost:4000/send'
+  public urlPush = url+'save'
+  public urlPushNot = url+'send'
 
   constructor(private http: HttpClient) { }
 
