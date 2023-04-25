@@ -13,6 +13,8 @@ import { ProductsComponent } from './cliente/products/products.component';
 import { ProductDetailsComponent } from './cliente/product-details/product-details.component';
 import { CustomerPaymentComponent } from './cliente/customer-payment/customer-payment.component';
 import { PaymentConfirmationComponent } from './cliente/payment-confirmation/payment-confirmation.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { PaymentConfirmationComponent } from './cliente/payment-confirmation/pay
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    MatPaginatorModule,
+    MatTableModule
   ],
   exports:[
     RegistroAdminComponent

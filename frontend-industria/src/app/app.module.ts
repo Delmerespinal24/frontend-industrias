@@ -14,7 +14,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 
 @NgModule({
@@ -33,6 +36,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     HttpClientModule,
     SharedModule,
     FontAwesomeModule,
+    MatPaginatorModule,
+    MatTableModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

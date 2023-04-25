@@ -10,7 +10,7 @@ import { url } from 'src/app/service/api-url';
 })
 export class PwaDetallesComponent {
   machine: any[] = []; // asegurandonos de que sea un arreglo
-  images: string[] = ['https://img.interempresas.net/fotos/1238989.jpeg', 'https://www.maquinariacolas.com/wp-content/uploads/2019/07/Centro-Mazak-VTC-usado.jpg?v=1591031640', 'https://www.dupuis-mecanique.com/photos/vtc200b.jpg'];
+  images: string[] = ['https://nunezgil.com/img/defectoproducto.jpg', 'https://nunezgil.com/img/defectoproducto.jpg', 'https://nunezgil.com/img/defectoproducto.jpg'];
   currentImage!: string;
   detallesId!: string | null;
 
@@ -23,6 +23,7 @@ export class PwaDetallesComponent {
         if(Array.isArray(response.data)){ // verificando que sea un arreglo por que si no *ngFor en el HTML no lo agarra, debe ser iterable
           this.machine = response.data;
           console.log('info maquina:',this.machine);
+          this.currentImage =  url + this.machine[0].image_1
         }
       },
       error => {
@@ -30,7 +31,7 @@ export class PwaDetallesComponent {
       }
     );
     console.log('id: ', this.detallesId)
-    this.currentImage =  url + this.machine[0].image_1
+    
   }
 
   changeImage(index: number) {
@@ -44,7 +45,7 @@ export class PwaDetallesComponent {
         this.currentImage = this.images[index];
       }
     }else if (index == 1){
-      if(this.machine[0].image_1 != "" && this.machine[0].image_1 != undefined){
+      if(this.machine[0].image_2 != "" && this.machine[0].image_2 != undefined){
       
         this.currentImage = url + this.machine[0].image_2
   
@@ -55,7 +56,7 @@ export class PwaDetallesComponent {
 
       
     }else if (index == 2){
-      if(this.machine[0].image_1 != "" && this.machine[0].image_1 != undefined){
+      if(this.machine[0].image_3 != "" && this.machine[0].image_3 != undefined){
       
         this.currentImage = url + this.machine[0].image_3
   

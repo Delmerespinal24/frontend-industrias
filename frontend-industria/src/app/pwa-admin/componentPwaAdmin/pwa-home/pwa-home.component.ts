@@ -8,6 +8,8 @@ import { ImagenService } from 'src/app/service/imagen.service';
 import { url } from 'src/app/service/api-url';
 import { Token } from 'src/app/interfaces/token';
 import { ApiRestServiceService } from 'src/app/service/api-rest-service.service';
+import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-pwa-home',
@@ -29,11 +31,21 @@ export class PwaHomeComponent {
   machines!: InfoMaquina2[];
   machinesResponse!: MachinesResponse;
   maquina: any;
+  listaMaquinas!: any[];
 
   archivosNew: any = []; //Sera de tipo array
   srcArrayNew: any = [];
 
+    ////PAGINACION
+    pageSize=6;
+    desde:number= 0;
+    hasta:number= 6;
   
+    cambiarPagina(e:PageEvent){
+      console.log(e)
+      this.desde=e.pageIndex*e.pageSize;
+      this.hasta=this.desde+e.pageSize;
+    }
 
   constructor(
     private nuevaMaquina: CrudMaquinaService,
@@ -103,6 +115,7 @@ export class PwaHomeComponent {
     console.log("dias plan:",this.diasDisponiblesPlan)
     this.nuevaMaquina.getMachinery().subscribe((response) => {
       this.machinesResponse = response;
+      this.listaMaquinas = this.machinesResponse?.data
       console.log(this.machinesResponse); // log the machinery data to the console
     });
 

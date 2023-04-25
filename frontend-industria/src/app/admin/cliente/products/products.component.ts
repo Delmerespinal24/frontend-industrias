@@ -8,6 +8,8 @@ import { TokenClientService } from 'src/app/service/tokenClient.service';
 import { Filtro } from 'src/app/interfaces/filtro';
 import { FiltroService } from 'src/app/service/filtro.service';
 import { url } from 'src/app/service/api-url';
+import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-products',
@@ -30,6 +32,17 @@ export class ProductsComponent {
   infoToken: any;
   dropdownVisible = false;
   isLoggedIn = false;
+
+  ////PAGINACION
+  pageSize=8;
+  desde:number= 0;
+  hasta:number= 8;
+
+  cambiarPagina(e:PageEvent){
+    console.log(e)
+    this.desde=e.pageIndex*e.pageSize;
+    this.hasta=this.desde+e.pageSize;
+  }
 
   constructor(
     private nuevaMaquina: CrudMaquinaService,
@@ -200,6 +213,9 @@ export class ProductsComponent {
 
 
     }
+
+    this.desde = 0;
+    this.hasta = 8;
 
   }
 

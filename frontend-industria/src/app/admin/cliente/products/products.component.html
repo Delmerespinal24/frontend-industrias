@@ -41,7 +41,7 @@
           <i class="brand-3"></i>
           <span class="text-[15px] ml-4 text-gray-200 font-bold p-2 rounded-lg" (click)="toggleTabs(3)"
             [ngClass]="{'text-azulPrimario bg-transparent hover:cursor-pointer': openTab !== 3, 'text-white bg-azulSecundario': openTab === 3}"
-            (click)="openSidebar()" (click)="filtrar('Alliance Laundry Systems')">Alliance Laundry Systems</span>
+            (click)="openSidebar()" (click)="filtrar('Alliance Laundry System')">Alliance Laundry System</span>
         </div>
         <div
           class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
@@ -113,7 +113,7 @@
                 </div>
         
                 <div  class="gallery" >
-                    <div class="content" *ngFor="let item of listaMaquinas" >
+                    <div class="content" *ngFor="let item of listaMaquinas | slice:desde:hasta" >
                         <img [src]="cargarImagen(item)"
                                     alt="image"/>
                         <table style="width: 100%">
@@ -124,17 +124,19 @@
                         <p class="info">L. {{item.precio}}</p>
                         <!--<p class="h5-descrip">{{item.descricion}}</p>-->
                         <button type="button-watch" class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop" routerLink="/machinery/detalles/{{item.idMaquina}}">Ver detalles</button>
+
+                      
                     </div>
-                </div> 
-
-                <!--mat-paginator [length]="lista.length"
-                            [pageSize]="pageSize"
-                            (page)="cambiarPagina($event)"
-                            >
-                </mat-paginator-->
-
-              </div>
-            </section>
+                  </div> 
+                  
+                  
+                </div>
+              </section>
+              <mat-paginator [length]="listaMaquinas.length"
+                          [pageSize]="pageSize"
+                          (page)="cambiarPagina($event)"
+                          >
+              </mat-paginator>
             <!-- ====== Cards Section End -->
          
         </div>
