@@ -10,10 +10,15 @@ import { url } from './api-url';
 export class LoginService {
 
   private apiUrl = url + 'login'
+  private apiUrlSaas = url + 'LoginSaas'
 
   constructor(private http: HttpClient) { }
 
   newLogin(loginUser: Login):Observable<Login>{
     return this.http.post<Login>(this.apiUrl, loginUser);
+  }
+
+  newLoginSaas(loginUser: Login):Observable<Login>{
+    return this.http.post<Login>(this.apiUrlSaas, loginUser);
   }
 }
